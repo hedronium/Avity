@@ -1,9 +1,7 @@
 {
-
-    "name": "Hedronium/Avity",
-    "description": "This is an image generator",
+    "name": "hedronium/avity",
+    "description": "this is an image generator",
     "type": "library",
     "keywords": ["image","generator","github"],
-    "license": "MIT" 
-
+    "license": "MIT"
 }
