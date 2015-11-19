@@ -3,5 +3,10 @@
     "description": "this is an image generator",
     "type": "library",
     "keywords": ["image","generator","github"],
-    "license": "MIT"
+    "license": "MIT",
+  	"autoload": {
+        "psr-4": {
+            "Hedronium\\Avity\\": "src/"
+        }
+    }
 }
