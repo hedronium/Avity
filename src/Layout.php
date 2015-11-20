@@ -6,5 +6,5 @@ use Hedronium\Avity\Gegnerator;
 
 abstract class Layout
 {
-    abstract public function drawGrid(Gegnerator $gen);
+    abstract public function drawGrid(Generator $gen);
 }
