@@ -2,7 +2,7 @@
 // Layout.php
 namespace Hedronium\Avity;
 
-use Hedronium\Avity\Gegnerator;
+use Hedronium\Avity\Generator;
 
 abstract class Layout
 {
