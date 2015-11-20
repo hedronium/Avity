@@ -21,6 +21,8 @@ class VerticalMirror extends Layout
               $max_columns -= 1;
         }
 
+      	$max_columns = floor($max_columns);
+
         for ($y = 0; $y < $this->rows; $y++) {
             // This will store the column value of the row
             $grid[$y] = [];
@@ -29,7 +31,7 @@ class VerticalMirror extends Layout
                   $value = $gen->shouldDraw($x,$y);
 
                   $grid[$y][$x] = $value;
-                  $grid[$y][$this->columns-($x+1)] = $value;
+                  $grid[$y][($this->columns-1)-$x] = $value;
             }
         }
 
