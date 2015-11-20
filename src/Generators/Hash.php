@@ -5,16 +5,22 @@ use Hedronium\Avity\Generator;
 
 class Hash extends Generator
 {
-    protected $hash = "";
+  protected $hash = "";
+	protected $random = null;
+
+    public function __construct()
+    {
+		$this->random = new \Savvot\Random\XorShiftRand;
+    }
 
     public function hash($str)
     {
-        $this->hash = crc32($str);
-        srand($this->hash);
+       	$this->random->setSeed($str);
+
     }
 
     public function shouldDraw($x, $y)
     {
-        return (bool) rand(0, 1);
+    	return $this->random->randomBool();
     }
 }
