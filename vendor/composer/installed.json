@@ -1,0 +1,52 @@
+[
+    {
+        "name": "savvot/random",
+        "version": "v0.3.0",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/savvot/random.git",
+            "reference": "8f075d520d75fa90dea8421f6d91176168d150e6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/savvot/random/zipball/8f075d520d75fa90dea8421f6d91176168d150e6",
+            "reference": "8f075d520d75fa90dea8421f6d91176168d150e6",
+            "shasum": ""
+        },
+        "require": {
+            "php-64bit": ">=5.5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.8.*"
+        },
+        "time": "2015-09-26 15:48:13",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Savvot\\Random\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "SavvoT",
+                "email": "savvot@ya.ru"
+            }
+        ],
+        "description": "Deterministic pseudo-random generators library with dozens of useful functions and several sources of randomness",
+        "keywords": [
+            "PRNG",
+            "RNG",
+            "php",
+            "pseudo-random",
+            "random",
+            "random number generator",
+            "rnd"
+        ]
+    }
+]

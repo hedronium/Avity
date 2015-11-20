@@ -1,11 +1,12 @@
 <?php
-namespace Hedronium\Avity;
+namespace Hedronium\Avity\Generator;
 
 /**
  *
  */
 class Hash extends Generator
 {
+
 
 
 }
