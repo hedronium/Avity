@@ -5,12 +5,10 @@ namespace Hedronium\Avity\Layouts;
 use Hedronium\Avity\Layout;
 use Hedronium\Avity\Generator;
 
-
 class VerticalMirror extends Layout
 {
   	public $rows = 5;
   	public $columns = 5;
-
     public function drawGrid(Generator $gen)
     {
 		$grid = [];
@@ -27,9 +25,12 @@ class VerticalMirror extends Layout
             // This will store the column value of the row
             $grid[$y] = [];
 
-            for($x = 0; $x < $max_columns; $x++ ){
-                  $value = $gen->shouldDraw($x,$y);
+          	for ($x = 0; $x < $this->columns; $x++) {
+                $grid[$y][$x] = false;
+            }
 
+            for ($x = 0; $x < $max_columns; $x++) {
+                  $value = $gen->shouldDraw($x, $y);
                   $grid[$y][$x] = $value;
                   $grid[$y][($this->columns-1)-$x] = $value;
             }
