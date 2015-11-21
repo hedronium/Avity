@@ -2,6 +2,9 @@
 // Output.php
 namespace Hedronium\Avity;
 
+/**
+* This class handles output to various locations
+*/
 class Output
 {
   	protected $canvas = null;
@@ -10,6 +13,7 @@ class Output
 
 	public function __construct($canvas)
     {
+      	// $canvas must be a GD Canvas OR ELSE! MUhahahahah
       	if (get_resource_type($canvas) !== 'gd') {
             throw new \Exception('Not a GD Resource.');
       	}
@@ -35,8 +39,10 @@ class Output
       	return $this;
     }
 
+  	// Sets the quality of the of the output image
   	public function quality($quality = 100)
     {
+      	// Checks if the $quality is in between 0 and 100
       	if ($quality > 100 || $quality < 0) {
           	throw new \Exception('Quality value must be between 0 and 100');
       	}
@@ -45,6 +51,7 @@ class Output
       	return $this;
     }
 
+  	// Outputs image to the browser
   	public function toBrowser()
     {
         switch ($this->type) {
@@ -55,7 +62,10 @@ class Output
 
           	case IMG_PNG:
                 header('Content-Type: image/png');
+
+          		// PNG Quality is defined within 0 to 9 not 0 to 100.
           		$quality = round(($this->quality/100)*9);
+
           		imagepng($this->canvas, null, $quality);
           		break;
 
@@ -66,6 +76,7 @@ class Output
         }
     }
 
+  	// Writes image to a specific file
   	public function toFile($name)
     {
 		switch ($this->type) {
