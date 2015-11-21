@@ -8,5 +8,19 @@ abstract class Style
 		public $width   = 300;
     public $padding = 40;
 
-  		abstract public function draw(array $grid);
+  	protected $layout = null;
+  	protected $generator = null;
+
+  	public function __construct(Layout $layout, Generator $generator)
+    {
+      	$this->layout = $layout;
+      	$this->generator = $generator;
+    }
+
+  	protected function getGrid()
+    {
+      	return $this->drawGrid();
+    }
+
+    abstract public function draw();
 }

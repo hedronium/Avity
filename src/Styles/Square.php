@@ -4,11 +4,14 @@ namespace Hedronium\Avity\Styles;
 use Hedronium\Avity\Style;
 class Square extends Style
 {
-    public function draw(array $grid)
+    public function draw()
     {
+      		$grid = $this->getGrid();
+
           $canvas = imagecreatetruecolor($this->width, $this->height);
           $bg_color = imagecolorallocate($canvas, 240, 240, 240);
           imagefill($canvas, 0, 0, $bg_color);
+
           // Calculations
           $start_x = $this->padding;
           $start_y = $this->padding;
@@ -19,8 +22,11 @@ class Square extends Style
           $block_width = $working_width/$columns;
           $block_height = $working_height/$rows;
           $color = imagecolorallocate($canvas, 70, 70, 70);
+
           for ($y = 0; $y < $rows; $y++) {
+
             	for ($x = 0; $x < $columns; $x++) {
+
                   	if ($grid[$y][$x] === true) {
                        imagefilledrectangle(
                            $canvas,
@@ -33,6 +39,7 @@ class Square extends Style
                     }
             	}
           }
+
           return $canvas;
     }
 }
