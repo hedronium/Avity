@@ -19,7 +19,7 @@ abstract class Style
 
   	protected function getGrid()
     {
-      	return $this->drawGrid();
+      	return $this->layout->drawGrid();
     }
 
     abstract public function draw();
