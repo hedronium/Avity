@@ -19,38 +19,37 @@ class Avity
   	/**
     * 	This static method initializes objects of the current class with appropriate dependencies.
     */
-
   	public static function init($generator = self::HASHED_GENERATOR, $layout = self::VERTICAL_MIRROR_LAYOUT, $style = self::SQUARE_STYLE)
     {
-      	$generator_obj = null;
+        $generator_obj = null;
       	$layout_obj = null;
       	$style_obj = null;
 
       	// checks the $generator parameter
       	switch ($generator) {
-          		// if the generator parameter is `1` or the constant
-      			case static::HASHED_GENERATOR:
-          		// or by default
-          		default:
-          			$generator_obj = new Generators\Hash;
+            // if the generator parameter is `1` or the constant
+            case static::HASHED_GENERATOR:
+      		// or by default
+      		default:
+      			$generator_obj = new Generators\Hash;
         }
 
       	// checks the $layout parameter
       	switch ($layout) {
-          		// if the layout is Vertically Mirrored
-      			case static::VERTICAL_MIRROR_LAYOUT:
-          		// or by default
-          		default:
-          			$layout_obj = new Layouts\VerticalMirror($generator_obj);
+      		// if the layout is Vertically Mirrored
+  			case static::VERTICAL_MIRROR_LAYOUT:
+      		// or by default
+      		default:
+      			$layout_obj = new Layouts\VerticalMirror($generator_obj);
         }
 
       	// checks the $style parameter
       	switch ($style) {
-          		// if the layout is Vertically Mirrored
-      			case static::SQUARE_STYLE:
-          		// or by default
-                default:
-          			$style_obj = new Styles\Square($layout_obj, $generator_obj);
+      		// if the layout is Vertically Mirrored
+  			case static::SQUARE_STYLE:
+      		// or by default
+            default:
+      			$style_obj = new Styles\Square($layout_obj, $generator_obj);
         }
 
       	// Creates an object of the current class with the dependencies and returns it
@@ -62,6 +61,75 @@ class Avity
         $this->generator = $generator;
       	$this->layout = $layout;
       	$this->style = $style;
+    }
+
+    /**
+     * Sets the number of columns in the generated identicon
+     *
+     * @param $columns integer Number of columns
+     */
+    public function columns($columns)
+    {
+        $this->layout->columns = $columns;
+        return $this;
+    }
+
+    /**
+     * Sets the number of rows in the generated identicon
+     *
+     * @param $rows integer Number of rows
+     */
+    public function rows($rows)
+    {
+        $this->layout->rows = $rows;
+        return $this;
+    }
+
+    /**
+     * Sets the height of the generated image.
+     *
+     * @param $height integer The height of the image
+     */
+    public function height($height)
+    {
+        $this->style->height = $height;
+        return $this;
+    }
+
+    /**
+     * Sets the width of the generated image.
+     *
+     * @param $height integer The width of the image
+     */
+    public function width($width)
+    {
+        $this->style->width = $width;
+        return $this;
+    }
+
+    /**
+     * Sets the padding of the generated image.
+     *
+     * @param $height integer The padding of the image
+     */
+    public function padding($padding)
+    {
+        $this->style->padding = $padding;
+        return $this;
+    }
+
+    /**
+     * Seeds the Generator with Hash
+     */
+    public function hash($string)
+    {
+        if ($this->generator instanceof HashedInterface) {
+            $this->generator->hash($string);
+        } else {
+            throw new \Exception('Generator does not support hash seeding.');
+        }
+
+        return $this;
     }
 
     public function generate()
