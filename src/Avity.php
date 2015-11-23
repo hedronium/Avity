@@ -45,9 +45,10 @@ class Avity
 
       	// checks the $style parameter
       	switch ($style) {
-      		// if the layout is Vertically Mirrored
+            case static::CIRCLE_STYLE:
+                $style_obj = new Styles\Circle($layout_obj, $generator_obj);
+                break;
   			case static::SQUARE_STYLE:
-      		// or by default
             default:
       			$style_obj = new Styles\Square($layout_obj, $generator_obj);
         }

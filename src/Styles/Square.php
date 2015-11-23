@@ -2,8 +2,9 @@
 // Styles/Square.php
 namespace Hedronium\Avity\Styles;
 use Hedronium\Avity\Style;
+
 /**
-*  This class draws the actual image using grid data
+*  This class draws the actual image with squares using grid data
 */
 class Square extends Style
 {
