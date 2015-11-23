@@ -27,9 +27,11 @@ class Avity
 
       	// checks the $generator parameter
       	switch ($generator) {
-            // if the generator parameter is `1` or the constant
+            case static::RANDOM_GENERATOR:
+                $generator_obj = new Generators\Random;
+                break;
+
             case static::HASHED_GENERATOR:
-      		// or by default
       		default:
       			$generator_obj = new Generators\Hash;
         }
@@ -39,6 +41,7 @@ class Avity
       		case static::HORIZONTAL_MIRROR_LAYOUT:
                 $layout_obj = new Layouts\HorizontalMirror($generator_obj);
                 break;
+
   			case static::VERTICAL_MIRROR_LAYOUT:
       		default:
       			$layout_obj = new Layouts\VerticalMirror($generator_obj);
@@ -49,6 +52,7 @@ class Avity
             case static::CIRCLE_STYLE:
                 $style_obj = new Styles\Circle($layout_obj, $generator_obj);
                 break;
+
   			case static::SQUARE_STYLE:
             default:
       			$style_obj = new Styles\Square($layout_obj, $generator_obj);
