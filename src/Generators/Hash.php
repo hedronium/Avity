@@ -2,12 +2,13 @@
 namespace Hedronium\Avity\Generators;
 
 use Hedronium\Avity\Generator;
+use Hedronium\Avity\HashedInterface;
 
 /**
  *  This is Hashed Type generator . It returns the same patterns for a specific hash
  */
 
-class Hash extends Generator
+class Hash extends Generator implements HashedInterface
 {
   	// This is a hash property which dictates the hash
   	protected $hash = "";
