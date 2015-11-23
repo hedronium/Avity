@@ -25,7 +25,7 @@ class HorizontalMirror extends Layout
             $grid[$y] = [];
 
             for ($x = 0; $x < $this->columns; $x++) {
-                $value = $gen->shouldDraw($x, $y);
+                $value = $this->shouldDraw();
                 $grid[$y][$x] = $value;
                 $grid[($this->rows-1)-$y][$x] = $value;
             }

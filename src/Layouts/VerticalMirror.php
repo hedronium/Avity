@@ -9,10 +9,6 @@ class VerticalMirror extends Layout
 {
     public function drawGrid()
     {
-        // This object was injected into contructer
-      	// Ex: Passed in as parameter from avity main object
-        $gen = $this->generator;
-
       	// Stores the whole grid as an array
         $grid = [];
 
@@ -45,7 +41,7 @@ class VerticalMirror extends Layout
 
             for ($x = 0; $x < $max_columns; $x++) {
                 // Loads boolean value from generator object
-                $value = $gen->shouldDraw($x, $y);
+                $value = $this->shouldDraw();
                 // Sets value into the current column
                 $grid[$y][$x] = $value;
                 // Sets same value into the oposite mirror column

@@ -42,6 +42,11 @@ abstract class Layout
       	$this->generator = $generator;
     }
 
+    protected function shouldDraw($values = [false, true], $x = 0, $y = 0)
+    {
+        return $values[$this->generator->next($x, $y)%count($values)];
+    }
+
   	// This is abstract method generates the array representing grid ( it is using values from Generator object)
     abstract public function drawGrid();
 }
