@@ -54,8 +54,8 @@ class Square extends Style
                        imagefilledrectangle(
                            $canvas,
                            // Caculates the co-ordinate (x, y) of the top-left corner of the square.
-                           ($block_width*$x)+0,
-                           ($block_height*$y)+0,
+                           ($block_width*$x)+$start_x,
+                           ($block_height*$y)+$start_x,
 
                          	// Caculates the co-ordinate (x, y) of the bottom-right corner of the square.
                            ($block_width*($x+1))+$start_x,
