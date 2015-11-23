@@ -7,10 +7,6 @@ use Hedronium\Avity\Generator;
 
 class VerticalMirror extends Layout
 {
-  	public $rows = 5;
-  	public $columns = 5;
-
-
     public function drawGrid()
     {
         // This object was injected into contructer

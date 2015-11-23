@@ -11,12 +11,45 @@ namespace Hedronium\Avity;
 
 abstract class Style
 {
-    public $height  = 300;
-	public $width   = 300;
-    public $padding = 40;
+    protected $height  = 300;
+	protected $width   = 300;
+    protected $padding = 40;
 
   	protected $layout = null;
   	protected $generator = null;
+
+    /**
+     * Sets the width of the image
+     *
+     * @param $width the width of the image.
+     */
+    public function width($width)
+    {
+        $this->width = $width;
+        return $this;
+    }
+
+    /**
+     * Sets the height of the image.
+     *
+     * @param $height The height of the image.
+     */
+    public function height($height)
+    {
+        $this->height = $height;
+        return $this;
+    }
+
+    /**
+     * Sets the padding of the image
+     *
+     * @param $padding the padding of the image.
+     */
+    public function padding($padding)
+    {
+        $this->padding = $padding;
+        return $this;
+    }
 
   	public function __construct(Layout $layout, Generator $generator)
     {
