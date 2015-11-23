@@ -36,9 +36,10 @@ class Avity
 
       	// checks the $layout parameter
       	switch ($layout) {
-      		// if the layout is Vertically Mirrored
+      		case static::HORIZONTAL_MIRROR_LAYOUT:
+                $layout_obj = new Layouts\HorizontalMirror($generator_obj);
+                break;
   			case static::VERTICAL_MIRROR_LAYOUT:
-      		// or by default
       		default:
       			$layout_obj = new Layouts\VerticalMirror($generator_obj);
         }
