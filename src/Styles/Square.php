@@ -7,7 +7,19 @@ use Hedronium\Avity\Style;
 */
 class Square extends Style
 {
-    public $spacing = 0;
+    protected $spacing = 0;
+
+    /**
+     * Sets the spacing between blocks
+     *
+     * @param $spacing integer the spacing between blocks
+     */
+    public function spacing($spacing)
+    {
+        $this->spacing = $spacing;
+
+        return $this;
+    }
 
     public function draw()
     {

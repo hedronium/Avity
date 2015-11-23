@@ -70,7 +70,7 @@ class Avity
      */
     public function columns($columns)
     {
-        $this->layout->columns = $columns;
+        $this->layout->columns($columns);
         return $this;
     }
 
@@ -81,7 +81,7 @@ class Avity
      */
     public function rows($rows)
     {
-        $this->layout->rows = $rows;
+        $this->layout->rows($rows);
         return $this;
     }
 
@@ -92,7 +92,7 @@ class Avity
      */
     public function height($height)
     {
-        $this->style->height = $height;
+        $this->style->height($height);
         return $this;
     }
 
@@ -103,7 +103,7 @@ class Avity
      */
     public function width($width)
     {
-        $this->style->width = $width;
+        $this->style->width($width);
         return $this;
     }
 
@@ -114,7 +114,7 @@ class Avity
      */
     public function padding($padding)
     {
-        $this->style->padding = $padding;
+        $this->style->padding($padding);
         return $this;
     }
 
@@ -140,6 +140,26 @@ class Avity
     public function style()
     {
         return $this->style;
+    }
+
+    /**
+     * Returns the layout object
+     *
+     * @return Layout The Layout object.
+     */
+    public function layout()
+    {
+        return $this->layout;
+    }
+
+    /**
+     * Returns the generator object
+     *
+     * @return Generator The Generator object.
+     */
+    public function generator()
+    {
+        return $this->generator;
     }
 
     public function generate()
