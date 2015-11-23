@@ -132,6 +132,16 @@ class Avity
         return $this;
     }
 
+    /**
+     * Returns the style object
+     *
+     * @return Style The style object.
+     */
+    public function style()
+    {
+        return $this->style;
+    }
+
     public function generate()
     {
       	// returns an

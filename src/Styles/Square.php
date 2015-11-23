@@ -7,6 +7,7 @@ use Hedronium\Avity\Style;
 */
 class Square extends Style
 {
+    public $spacing = 0;
 
     public function draw()
     {
@@ -39,6 +40,9 @@ class Square extends Style
           $block_width = $working_width/$columns;
           $block_height = $working_height/$rows;
 
+          // Calculate Spacing
+          $spacing = $this->spacing/2;
+
           // Creates a color to be used to draw the squares
           $color = imagecolorallocate($canvas, 70, 70, 70);
 
@@ -54,12 +58,12 @@ class Square extends Style
                        imagefilledrectangle(
                            $canvas,
                            // Caculates the co-ordinate (x, y) of the top-left corner of the square.
-                           ($block_width*$x)+$start_x,
-                           ($block_height*$y)+$start_x,
+                           ($block_width*$x)+$start_x+$spacing,
+                           ($block_height*$y)+$start_x+$spacing,
 
                          	// Caculates the co-ordinate (x, y) of the bottom-right corner of the square.
-                           ($block_width*($x+1))+$start_x,
-                           ($block_height*($y+1))+$start_y,
+                           ($block_width*($x+1))+$start_x-$spacing,
+                           ($block_height*($y+1))+$start_y-$spacing,
 
                            $color
                        );
