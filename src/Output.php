@@ -2,6 +2,8 @@
 // Output.php
 namespace Hedronium\Avity;
 
+use Imagine\Image\ImageInterface;
+
 /**
 * This class handles output to various locations
 */
@@ -11,31 +13,26 @@ class Output
   	protected $type = IMG_JPEG;
     protected $quality = 100;
 
-	public function __construct($canvas)
+	public function __construct(ImageInterface $canvas)
     {
-      	// $canvas must be a GD Canvas OR ELSE! MUhahahahah
-      	if (get_resource_type($canvas) !== 'gd') {
-            throw new \Exception('Not a GD Resource.');
-      	}
-
       	$this->canvas = $canvas;
     }
 
   	public function jpg()
     {
-      	$this->type = IMG_JPEG;
+      	$this->type = 'jpg';
       	return $this;
     }
 
   	public function png()
     {
-    	$this->type = IMG_PNG;
+    	$this->type = 'png';
       	return $this;
     }
 
   	public function gif()
     {
-      	$this->type = IMG_GIF;
+      	$this->type = 'gif';
       	return $this;
     }
 
@@ -54,44 +51,12 @@ class Output
   	// Outputs image to the browser
   	public function toBrowser()
     {
-        switch ($this->type) {
-        	case IMG_JPEG:
-                header('Content-Type: image/jpeg');
-          		imagejpeg($this->canvas, null, $this->quality);
-          		break;
-
-          	case IMG_PNG:
-                header('Content-Type: image/png');
-
-          		// PNG Quality is defined within 0 to 9 not 0 to 100.
-          		$quality = round(($this->quality/100)*9);
-
-          		imagepng($this->canvas, null, $quality);
-          		break;
-
-          	case IMG_GIF:
-                header('Content-Type: image/gif');
-          		imagegif($this->canvas, null);
-          		break;
-        }
+        $this->canvas->show($this->type);
     }
 
   	// Writes image to a specific file
   	public function toFile($name)
     {
-		switch ($this->type) {
-        	case IMG_JPEG:
-          		imagejpeg($this->canvas, $name, $this->quality);
-          		break;
-
-          	case IMG_PNG:
-          		$quality = round(($this->quality/100)*9);
-          		imagepng($this->canvas, $name, $quality);
-          		break;
-
-          	case IMG_GIF:
-          		imagegif($this->canvas, $name);
-          		break;
-        }
+        $this->canvas->show($name, $this->type);
     }
 }

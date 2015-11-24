@@ -2,6 +2,8 @@
 // Style.php
 namespace Hedronium\Avity;
 
+use Imagine\Image\ImagineInterface;
+
 /**
  * Base class for Styles.
  *
@@ -16,7 +18,8 @@ abstract class Style
     protected $padding = 40;
 
   	protected $layout = null;
-  	protected $generator = null;
+    protected $generator = null;
+  	protected $drawer = null;
 
     /**
      * Sets the width of the image
@@ -51,10 +54,11 @@ abstract class Style
         return $this;
     }
 
-  	public function __construct(Layout $layout, Generator $generator)
+  	public function __construct(Layout $layout, Generator $generator, ImagineInterface $drawer)
     {
       	$this->layout = $layout;
-      	$this->generator = $generator;
+        $this->generator = $generator;
+      	$this->drawer = $drawer;
     }
 
   	// Grid gets the grid array from the layout object
