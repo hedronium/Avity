@@ -19,5 +19,5 @@ abstract class Generator
 	 * @return integer   States if the particular
 	 *                   location should have an object or not and what type of object
 	 */
-    abstract public function shouldDraw($x, $y);
+    abstract public function next($x, $y);
 }

@@ -8,8 +8,5 @@
         "psr-4": {
             "Hedronium\\Avity\\": "src/"
         }
-    },
-    "require": {
-        "savvot/random": "0.3.0"
     }
 }

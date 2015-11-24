@@ -7,34 +7,27 @@ use Hedronium\Avity\HashedInterface;
 /**
  *  This is Hashed Type generator . It returns the same patterns for a specific hash
  */
-
 class Hash extends Generator implements HashedInterface
 {
-  	// This is a hash property which dictates the hash
-  	protected $hash = "";
-
-    // This property contains a randomizer object
-	protected $random = null;
-
+    protected $state = 0;
 
     public function __construct()
     {
-        //This is a 3rd party Random library class
-        $this->random = new \Savvot\Random\XorShiftRand;
+        $this->state = mt_rand();
     }
 
     public function hash($str)
     {
       	// This seeds the randomizer with a hash.
-      	// TODO: The ability to seed the randomizer from main class
-
-       	$this->random->setSeed($str);
-
+       	$this->state = crc32($str);
     }
 
-    public function shouldDraw($x, $y)
+    public function next($x, $y)
     {
-      	// This returns a boolean from randomizer
-      	return $this->random->randomBool();
+        $this->state ^= $this->state >> 12;
+	    $this->state ^= $this->state << 25;
+    	$this->state ^= $this->state >> 27;
+
+        return $this->state;
     }
 }
