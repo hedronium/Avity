@@ -33,7 +33,7 @@ class Circle extends Style
 
         $canvas = $this->drawer->create(
             new Box($this->width, $this->height),
-            $palette->color('#f0f0f0')
+            $palette->color($this->background)
         );
 
         // Calculations
@@ -51,7 +51,7 @@ class Circle extends Style
         $center_y = $block_height/2;
 
         // Color to be used to draw the squares
-        $color = $canvas->palette()->color('#333');
+        $color = $canvas->palette()->color($this->foregroundColor());
 
         for ($y = 0; $y < $rows; $y++) {
               for ($x = 0; $x < $columns; $x++) {
