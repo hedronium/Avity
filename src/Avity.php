@@ -1,6 +1,8 @@
 <?php
 namespace Hedronium\Avity;
 
+use Imagine\Image\ImagineInterface;
+
 class Avity
 {
   	const HASHED_GENERATOR = 1;
@@ -14,7 +16,8 @@ class Avity
 
   	protected $generator = null;
     protected $layout    = null;
-  	protected $style 	 = null;
+    protected $style 	 = null;
+  	protected $drawer 	 = null;
 
   	/**
     * 	This static method initializes objects of the current class with appropriate dependencies.
@@ -24,6 +27,7 @@ class Avity
         $generator_obj = null;
       	$layout_obj = null;
       	$style_obj = null;
+        $drawer_obj = null;
 
       	// checks the $generator parameter
       	switch ($generator) {
@@ -47,26 +51,35 @@ class Avity
       			$layout_obj = new Layouts\VerticalMirror($generator_obj);
         }
 
+        if (class_exists("Imagick")) {
+            $drawer_obj = new \Imagine\Imagick\Imagine();
+        } elseif (function_exists('imagecolorallocate')) {
+            $drawer_obj = new \Imagine\Gd\Imagine();
+        } else {
+            throw new \Exception('Neither ImageMagik nor PHP GD is installed.');
+        }
+
       	// checks the $style parameter
       	switch ($style) {
             case static::CIRCLE_STYLE:
-                $style_obj = new Styles\Circle($layout_obj, $generator_obj);
+                $style_obj = new Styles\Circle($layout_obj, $generator_obj, $drawer_obj);
                 break;
 
   			case static::SQUARE_STYLE:
             default:
-      			$style_obj = new Styles\Square($layout_obj, $generator_obj);
+      			$style_obj = new Styles\Square($layout_obj, $generator_obj, $drawer_obj);
         }
 
       	// Creates an object of the current class with the dependencies and returns it
-      	return new static($generator_obj, $layout_obj, $style_obj);
+      	return new static($generator_obj, $layout_obj, $style_obj, $drawer_obj);
     }
 
-    public function __construct(Generator $generator, Layout $layout, Style $style)
+    public function __construct(Generator $generator, Layout $layout, Style $style, ImagineInterface $drawer)
     {
         $this->generator = $generator;
       	$this->layout = $layout;
       	$this->style = $style;
+        $this->drawer = $drawer;
     }
 
     /**
@@ -166,6 +179,11 @@ class Avity
     public function generator()
     {
         return $this->generator;
+    }
+
+    public function drawer()
+    {
+        return $this->drawer;
     }
 
     public function generate()
