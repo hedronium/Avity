@@ -37,7 +37,7 @@ class Square extends Style
 
         $canvas = $this->drawer->create(
             new Box($this->width, $this->height),
-            $palette->color('#f0f0f0')
+            $palette->color($this->background)
         );
 
         // Calculations
@@ -62,7 +62,7 @@ class Square extends Style
         $spacing = $this->spacing/2;
 
         // Creates a color to be used to draw the squares
-        $color = $canvas->palette()->color('#333');
+        $color = $canvas->palette()->color($this->foregroundColor());
 
         // Loops thorugh the rows
         for ($y = 0; $y < $rows; $y++) {

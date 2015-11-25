@@ -21,6 +21,46 @@ abstract class Style
     protected $generator = null;
   	protected $drawer = null;
 
+    protected $background = [240, 240, 240];
+    protected $foreground = null;
+
+    public function foreground($r, $g, $b)
+    {
+        $this->foreground = [$r, $g, $b];
+    }
+
+    public function background($r, $g, $b)
+    {
+        $this->background = [$r, $g, $b];
+    }
+
+    protected function foregroundColor()
+    {
+        if (!$this->foreground) {
+            $r = $this->generator->next(-1, -1)%256;
+            $g = $this->generator->next(-1, -1)%256;
+            $b = $this->generator->next(-1, -1)%256;
+
+            $brightest = 255*3;
+            $background_brightness = array_sum($this->background);
+            $midpoint = $brightest/2;
+
+            if ($background_brightness > $midpoint) {
+                $ratio = ($background_brightness-($brightest*0.2))/$brightest;
+            } else {
+                $ratio = ($background_brightness+($brightest*0.4))/$brightest;
+            }
+
+            $r *= $ratio;
+            $g *= $ratio;
+            $b *= $ratio;
+
+            return [$r, $g, $b];
+        }
+
+        return $this->foreground;
+    }
+
     /**
      * Sets the width of the image
      *
