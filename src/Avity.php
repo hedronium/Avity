@@ -9,7 +9,8 @@ class Avity
   	const RANDOM_GENERATOR = 2;
 
   	const VERTICAL_MIRROR_LAYOUT = 1;
-  	const HORIZONTAL_MIRROR_LAYOUT = 2;
+    const HORIZONTAL_MIRROR_LAYOUT = 2;
+  	const DIAGONAL_MIRROR_LAYOUT = 3;
 
   	const SQUARE_STYLE = 1;
   	const CIRCLE_STYLE = 2;
@@ -42,6 +43,10 @@ class Avity
 
       	// checks the $layout parameter
       	switch ($layout) {
+            case static::DIAGONAL_MIRROR_LAYOUT:
+                $layout_obj = new Layouts\DiagonalMirror($generator_obj);
+                break;
+
       		case static::HORIZONTAL_MIRROR_LAYOUT:
                 $layout_obj = new Layouts\HorizontalMirror($generator_obj);
                 break;
