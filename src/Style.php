@@ -101,11 +101,14 @@ abstract class Style
       	$this->drawer = $drawer;
     }
 
-  	// Grid gets the grid array from the layout object
-
+    /**
+     * Gets the grid array from Layout
+     *
+     * @return array the grid array
+     */
   	protected function getGrid()
     {
-      return $this->layout->drawGrid();
+        return $this->layout->drawGrid();
     }
 
      /**
