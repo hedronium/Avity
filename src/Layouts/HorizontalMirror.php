@@ -7,7 +7,7 @@ use Hedronium\Avity\Generator;
 
 class HorizontalMirror extends Layout
 {
-    public function drawGrid()
+    public function drawGrid($values = [false, true])
     {
         $gen = $this->generator;
 
@@ -25,7 +25,7 @@ class HorizontalMirror extends Layout
             $grid[$y] = [];
 
             for ($x = 0; $x < $this->columns; $x++) {
-                $value = $this->shouldDraw();
+                $value = $this->shouldDraw($values);
                 $grid[$y][$x] = $value;
                 $grid[($this->rows-1)-$y][$x] = $value;
             }

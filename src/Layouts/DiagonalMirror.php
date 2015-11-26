@@ -5,7 +5,7 @@ use Hedronium\Avity\Layout;
 
 class DiagonalMirror extends Layout
 {
-    public function drawGrid()
+    public function drawGrid($values = [false, true])
     {
         $grid = [];
 
@@ -20,7 +20,7 @@ class DiagonalMirror extends Layout
 
         for ($y = 0; $y < $this->rows; $y++) {
             for ($x = 0; $x < $columns; $x++) {
-                $value = $this->shouldDraw();
+                $value = $this->shouldDraw($values);
 
                 $grid[$y][$x] = $value;
                 $grid[$this->rows-$y-1][$this->columns-$x-1] = $value;
