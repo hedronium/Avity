@@ -14,6 +14,12 @@ use Imagine\Image\Palette\RGB;
 class Square extends Style
 {
     protected $spacing = 0;
+    protected $varied_color = false;
+
+    public function variedColor()
+    {
+        $this->varied_color = true;
+    }
 
     /**
      * Sets the spacing between blocks
@@ -79,6 +85,23 @@ class Square extends Style
                    ], $color, true);
                 }
 
+                if ($this->varied_color) {
+                    $new_brightness = 30+($this->generator->next(-1, -1)%226);
+
+                    $max = max([
+                        $color->getRed(),
+                        $color->getGreen(),
+                        $color->getBlue()
+                    ]);
+
+                    $ratio = $new_brightness/$max;
+
+                    $color = $canvas->palette()->color([
+                        $color->getRed()*$ratio,
+                        $color->getGreen()*$ratio,
+                        $color->getBlue()*$ratio
+                    ]);
+                }
         	}
         }
 
