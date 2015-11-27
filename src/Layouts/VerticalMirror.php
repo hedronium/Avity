@@ -7,7 +7,29 @@ use Hedronium\Avity\Generator;
 
 class VerticalMirror extends Layout
 {
-    public function drawGrid($values = [false, true])
+    public function flipVertical(array $sub_grid)
+    {
+        $rows = count($sub_grid);
+        $columns = count($sub_grid[0]);
+
+        $max_columns = $columns/2;
+
+        if ($columns&1 == 0) {
+            $max_columns -= 1;
+        }
+
+        for ($y = 0; $y < $rows; $y++) {
+            for ($x = 0; $x < $max_columns; $x++) {
+                $tmp = $sub_grid[$y][$x];
+                $sub_grid[$y][$x] = $sub_grid[$y][$columns-1-$x];
+                $sub_grid[$y][$columns-1-$x] = $tmp;
+            }
+        }
+
+        return $sub_grid;
+    }
+
+    public function drawGrid(array $values = [false, true])
     {
       	// Stores the whole grid as an array
         $grid = [];
@@ -42,10 +64,11 @@ class VerticalMirror extends Layout
             for ($x = 0; $x < $max_columns; $x++) {
                 // Loads boolean value from generator object
                 $value = $this->shouldDraw($values);
+
                 // Sets value into the current column
                 $grid[$y][$x] = $value;
                 // Sets same value into the oposite mirror column
-                $grid[$y][($this->columns-1)-$x] = $value;
+                $grid[$y][($this->columns-1)-$x] = is_array($value) ? $this->flipVertical($value) : $value;
             }
 
         }

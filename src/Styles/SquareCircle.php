@@ -10,20 +10,9 @@ use Imagine\Image\Palette\RGB;
 /**
 *  Circle Object Style
 */
-class SquareCircle extends Style
+class SquareCircle extends Circle
 {
     protected $spacing = 5;
-
-    /**
-     * Sets the spacing between blocks
-     *
-     * @param $spacing integer the spacing between blocks
-     */
-    public function spacing($spacing)
-    {
-        $this->spacing = $spacing;
-        return $this;
-    }
 
     protected function getGrid()
     {
@@ -77,6 +66,7 @@ class SquareCircle extends Style
                       ], $color, true);
                   }
 
+                  $color = $this->varryColor($color, $canvas);
               }
         }
 

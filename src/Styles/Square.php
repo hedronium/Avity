@@ -16,9 +16,15 @@ class Square extends Style
     protected $spacing = 0;
     protected $varied_color = false;
 
+    /**
+     * Sets if the color should be varied or not
+     * @return static
+     */
     public function variedColor()
     {
         $this->varied_color = true;
+
+        return $this;
     }
 
     /**
@@ -31,6 +37,37 @@ class Square extends Style
         $this->spacing = $spacing;
 
         return $this;
+    }
+
+    /**
+     * Varries the color's brightness a bit
+     *
+     * @param $color The previos Color
+     * @param $canvas The canvas to generate the color from
+     * 
+     * @return Color the new color
+     */
+    protected function varryColor($color, $canvas)
+    {
+        if ($this->varied_color) {
+            $new_brightness = 30+($this->generator->next(-1, -1)%226);
+
+            $max = max([
+                $color->getRed(),
+                $color->getGreen(),
+                $color->getBlue()
+            ]);
+
+            $ratio = $new_brightness/$max;
+
+            $color = $canvas->palette()->color([
+                $color->getRed()*$ratio,
+                $color->getGreen()*$ratio,
+                $color->getBlue()*$ratio
+            ]);
+        }
+
+        return $color;
     }
 
     public function draw()
@@ -85,23 +122,7 @@ class Square extends Style
                    ], $color, true);
                 }
 
-                if ($this->varied_color) {
-                    $new_brightness = 30+($this->generator->next(-1, -1)%226);
-
-                    $max = max([
-                        $color->getRed(),
-                        $color->getGreen(),
-                        $color->getBlue()
-                    ]);
-
-                    $ratio = $new_brightness/$max;
-
-                    $color = $canvas->palette()->color([
-                        $color->getRed()*$ratio,
-                        $color->getGreen()*$ratio,
-                        $color->getBlue()*$ratio
-                    ]);
-                }
+                $color = $this->varryColor($color, $canvas);
         	}
         }
 
