@@ -6,13 +6,18 @@ use Hedronium\Avity\Generator;
  * Base Class for Layouts
  *
  * Layouts dictate how the generated elements
- * will be arraged in the grid as a complete array from a blank array.
+ * will be arraged in the grid that is to become the
+ * final image.
  */
 abstract class Layout
 {
     protected $rows = 5;
   	protected $columns = 5;
 
+
+    /**
+     * @var Generator stores the Generator Instance
+     */
   	protected $generator = null;
 
     /**
@@ -37,16 +42,34 @@ abstract class Layout
         return $this;
     }
 
+    /**
+     * @param $generator Generator A Generator Instance
+     */
     public function __construct(Generator $generator)
     {
       	$this->generator = $generator;
     }
 
-    protected function shouldDraw($values = [false, true], $x = 0, $y = 0)
+    /**
+     * Returns a value (dictated by the Generator Instance) that should
+     * be drawn at a grid location.
+     *
+     * @param $values array the values to choose from
+     * @param $x the x coordinate of the position.
+     * @param $y the y coordinate of the position.
+     *
+     * @return mixed The value to the drawn
+     */
+    protected function shouldDraw(&$values = array(false, true), $x = 0, $y = 0)
     {
         return $values[$this->generator->next($x, $y)%count($values)];
     }
 
-  	// This is abstract method generates the array representing grid ( it is using values from Generator object)
-    abstract public function drawGrid();
+  	/**
+  	 * Draws the grid with values randomly selected from array
+  	 *
+  	 * @param $values array The list of values to choose from
+  	 * @return array The grid representing the Image
+  	 */
+    abstract public function drawGrid(array $values = array(false,true));
 }

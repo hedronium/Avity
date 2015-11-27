@@ -5,7 +5,7 @@ use Imagine\Image\ImagineInterface;
 
 class Avity
 {
-  	const HASHED_GENERATOR = 1;
+    const HASHED_GENERATOR = 1;
   	const RANDOM_GENERATOR = 2;
 
   	const VERTICAL_MIRROR_LAYOUT = 1;
@@ -22,7 +22,11 @@ class Avity
   	protected $drawer 	 = null;
 
   	/**
-    * 	This static method initializes objects of the current class with appropriate dependencies.
+    * Factory for Avity.
+    *
+    * @param $generator string|integer The Generator to be Used
+    * @param $layout string|integer The Layout to be Used
+    * @param $style string|integer The Style to be Used
     */
   	public static function init($generator = self::HASHED_GENERATOR, $layout = self::VERTICAL_MIRROR_LAYOUT, $style = self::SQUARE_STYLE)
     {
@@ -31,7 +35,6 @@ class Avity
       	$style_obj = null;
         $drawer_obj = null;
 
-      	// checks the $generator parameter
       	switch ($generator) {
             case static::RANDOM_GENERATOR:
                 $generator_obj = new Generators\Random;
@@ -42,7 +45,6 @@ class Avity
       			$generator_obj = new Generators\Hash;
         }
 
-      	// checks the $layout parameter
       	switch ($layout) {
             case static::DIAGONAL_MIRROR_LAYOUT:
                 $layout_obj = new Layouts\DiagonalMirror($generator_obj);
@@ -58,14 +60,16 @@ class Avity
         }
 
         if (class_exists("Imagick")) {
+            // If Imagick is installed
             $drawer_obj = new \Imagine\Imagick\Imagine();
         } elseif (function_exists('imagecolorallocate')) {
+            // If Gd is Installed
             $drawer_obj = new \Imagine\Gd\Imagine();
         } else {
             throw new \Exception('Neither ImageMagik nor PHP GD is installed.');
         }
 
-      	// checks the $style parameter
+
       	switch ($style) {
             case static::SQUARE_CIRCLE_STYLE:
                 $style_obj = new Styles\SquareCircle($layout_obj, $generator_obj, $drawer_obj);
@@ -80,10 +84,15 @@ class Avity
       			$style_obj = new Styles\Square($layout_obj, $generator_obj, $drawer_obj);
         }
 
-      	// Creates an object of the current class with the dependencies and returns it
       	return new static($generator_obj, $layout_obj, $style_obj, $drawer_obj);
     }
 
+    /**
+     * @param $generator Generator the Generator object
+     * @param $layout Layout The Layout object
+     * @param $style Style The Style object
+     * @param $drawer ImagineInterface The Image Drawing Library Object
+     */
     public function __construct(Generator $generator, Layout $layout, Style $style, ImagineInterface $drawer)
     {
         $this->generator = $generator;
@@ -149,6 +158,8 @@ class Avity
 
     /**
      * Seeds the Generator with Hash
+     *
+     * @param $string integer|string
      */
     public function hash($string)
     {
@@ -191,14 +202,24 @@ class Avity
         return $this->generator;
     }
 
+    /**
+     * Returns the Image Drawing Library object
+     *
+     * @return ImagineInterface The drawing library object.
+     */
     public function drawer()
     {
         return $this->drawer;
     }
 
+    /**
+     * Returns an Outputer instance that can be used to
+     * output images to the browser or file.
+     *
+     * @return Output The Outputer object.
+     */
     public function generate()
     {
-      	// returns an
       	return new Output($this->style->draw());
     }
 }

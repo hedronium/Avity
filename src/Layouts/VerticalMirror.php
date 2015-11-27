@@ -7,7 +7,35 @@ use Hedronium\Avity\Generator;
 
 class VerticalMirror extends Layout
 {
-    public function drawGrid($values = [false, true])
+    /**
+     * Flips the Sub-Grid which is used as an element of the
+     * grid.
+     *
+     * @param $sub_grid array the Sub-Grid
+     */
+    public function flipVertical(array $sub_grid)
+    {
+        $rows = count($sub_grid);
+        $columns = count($sub_grid[0]);
+
+        $max_columns = $columns/2;
+
+        if ($columns&1 == 0) {
+            $max_columns -= 1;
+        }
+
+        for ($y = 0; $y < $rows; $y++) {
+            for ($x = 0; $x < $max_columns; $x++) {
+                $tmp = $sub_grid[$y][$x];
+                $sub_grid[$y][$x] = $sub_grid[$y][$columns-1-$x];
+                $sub_grid[$y][$columns-1-$x] = $tmp;
+            }
+        }
+
+        return $sub_grid;
+    }
+
+    public function drawGrid(array $values = array(false, true))
     {
       	// Stores the whole grid as an array
         $grid = [];

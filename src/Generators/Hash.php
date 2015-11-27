@@ -5,7 +5,7 @@ use Hedronium\Avity\Generator;
 use Hedronium\Avity\HashedInterface;
 
 /**
- *  This is Hashed Type generator . It returns the same patterns for a specific hash
+ *  This is Hashed Type generator. It returns the same patterns for a specific hash
  */
 class Hash extends Generator implements HashedInterface
 {

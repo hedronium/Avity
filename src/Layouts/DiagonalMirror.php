@@ -5,7 +5,33 @@ use Hedronium\Avity\Layout;
 
 class DiagonalMirror extends Layout
 {
-    public function drawGrid($values = [false, true])
+    /**
+     * Flips the Sub-Grid which is used as an element of the
+     * grid.
+     *
+     * @param $sub_grid array the Sub-Grid
+     */
+    protected function flipDiagonal(array $sub_grid)
+    {
+        $rows = count($sub_grid);
+        $columns = count($sub_grid[0]);
+
+        $columns_r = $columns;
+
+        for ($y = 0; $y < $rows; $y++) {
+            for ($x = 0; $x < $columns_r; $x++) {
+                $tmp = $sub_grid[$y][$x];
+                $sub_grid[$y][$x] = $sub_grid[$rows-1-$y][$columns-1-$x];
+                $sub_grid[$rows-1-$y][$columns-1-$x] = $tmp;
+            }
+
+            $columns_r--;
+        }
+
+        return $sub_grid;
+    }
+
+    public function drawGrid(array $values = array(false, true))
     {
         $grid = [];
 
