@@ -10,28 +10,8 @@ use Imagine\Image\Palette\RGB;
 /**
 *  Circle Object Style
 */
-class Circle extends Style
+class Circle extends Square
 {
-    protected $spacing = 0;
-
-    protected $varied_color = false;
-
-    public function variedColor()
-    {
-        $this->varied_color = true;
-    }
-
-    /**
-     * Sets the spacing between blocks
-     *
-     * @param $spacing integer the spacing between blocks
-     */
-    public function spacing($spacing)
-    {
-        $this->spacing = $spacing;
-        return $this;
-    }
-
     public function draw()
     {
         $grid = $this->getGrid();
@@ -73,23 +53,7 @@ class Circle extends Style
                         );
                   }
 
-                  if ($this->varied_color) {
-                      $new_brightness = 30+($this->generator->next(-1, -1)%226);
-
-                      $max = max([
-                          $color->getRed(),
-                          $color->getGreen(),
-                          $color->getBlue()
-                      ]);
-
-                      $ratio = $new_brightness/$max;
-
-                      $color = $canvas->palette()->color([
-                          $color->getRed()*$ratio,
-                          $color->getGreen()*$ratio,
-                          $color->getBlue()*$ratio
-                      ]);
-                  }
+                  $color = $this->varryColor($color, $canvas);
 
               }
         }

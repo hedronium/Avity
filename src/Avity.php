@@ -14,7 +14,8 @@ class Avity
 
   	const SQUARE_STYLE = 1;
     const CIRCLE_STYLE = 2;
-  	const SQUARE_CIRCLE_STYLE = 3;
+    const SQUARE_CIRCLE_STYLE = 3;
+  	const TRIANGLE_STYLE = 4;
 
   	protected $generator = null;
     protected $layout    = null;
@@ -67,6 +68,10 @@ class Avity
 
       	// checks the $style parameter
       	switch ($style) {
+            case static::TRIANGLE_STYLE:
+                $style_obj = new Styles\Triangle($layout_obj, $generator_obj, $drawer_obj);
+                break;
+
             case static::SQUARE_CIRCLE_STYLE:
                 $style_obj = new Styles\SquareCircle($layout_obj, $generator_obj, $drawer_obj);
                 break;
