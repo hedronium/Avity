@@ -8,9 +8,8 @@ use Imagine\Image\ImagineInterface;
  * Base class for Styles.
  *
  * Styles dictate the shape of each individual block in a grid.
- * They also are reponsible for drawin ghte actual elemnts onto a GD canvas.
+ * They also are reponsible for drawing hte actual elemnts onto the image.
  */
-
 abstract class Style
 {
     protected $height  = 300;
@@ -21,19 +20,46 @@ abstract class Style
     protected $generator = null;
   	protected $drawer = null;
 
+    /**
+     * @var array RGB values as Integers
+     */
     protected $background = [240, 240, 240];
+
+    /**
+     * @var array RGB values as Integers
+     */
     protected $foreground = null;
 
+    /**
+     * Sets the foreground Color
+     *
+     * @param $r integer the red component of the color.
+     * @param $r integer the green component of the color.
+     * @param $r integer the blue component of the color.
+     */
     public function foreground($r, $g, $b)
     {
         $this->foreground = [$r, $g, $b];
     }
 
+    /**
+     * Sets the background Color
+     *
+     * @param $r integer the red component of the color.
+     * @param $r integer the green component of the color.
+     * @param $r integer the blue component of the color.
+     */
     public function background($r, $g, $b)
     {
         $this->background = [$r, $g, $b];
     }
 
+    /**
+     * Returns the set foreground color or picks a random Color
+     * if foregorund is not set.
+     *
+     * @return array array of RGB values as Integers
+     */
     protected function foregroundColor()
     {
         if (!$this->foreground) {
@@ -94,6 +120,11 @@ abstract class Style
         return $this;
     }
 
+    /**
+    * @param $layout Layout A Layout instance
+    * @param $generator Generator A Generator instance
+    * @param $drawer ImagineInterface A Drawing library instance
+    */
   	public function __construct(Layout $layout, Generator $generator, ImagineInterface $drawer)
     {
       	$this->layout = $layout;
@@ -112,9 +143,8 @@ abstract class Style
     }
 
      /**
-	 * Generates the image and return s a GD handle.
-	 * @return resource The GD resource handle of the image.
+	 * Generates the image and returns the image instance.
+	 * @return ImageInterface the Image instance
 	 */
-
      abstract public function draw();
 }

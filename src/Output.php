@@ -5,14 +5,19 @@ namespace Hedronium\Avity;
 use Imagine\Image\ImageInterface;
 
 /**
-* This class handles output to various locations
+* Handles outputing operations to varios
+* output streams.
 */
 class Output
 {
   	protected $canvas = null;
-  	protected $type = IMG_JPEG;
-    protected $quality = 100;
 
+  	protected $type = 'jpg';
+    protected $quality = 85;
+
+    /**
+     * @param $canvas ImageInterface The Imagine Image
+     */
 	public function __construct(ImageInterface $canvas)
     {
       	$this->canvas = $canvas;
@@ -36,7 +41,11 @@ class Output
       	return $this;
     }
 
-  	// Sets the quality of the of the output image
+  	/**
+  	 * Sets the quality of the output image.
+  	 *
+  	 * @param $quality integer the quality of the image in percentage.
+  	 */
   	public function quality($quality = 100)
     {
       	// Checks if the $quality is in between 0 and 100
@@ -48,15 +57,38 @@ class Output
       	return $this;
     }
 
-  	// Outputs image to the browser
-  	public function toBrowser()
+    protected function qualityOption($type = false)
     {
-        $this->canvas->show($this->type);
+        if (!$type) {
+            $type = $this->type;
+        }
+
+        if ($type === 'png') {
+            // PNG Compression Value from 0 to 9
+            return ['png_compression_level' => round(($this->quality*9)/100)];
+        } elseif ($type === 'jpg') {
+            return ['jpeg_quality' => $this->quality];
+        }
+
+        return [];
     }
 
-  	// Writes image to a specific file
+  	/**
+  	 * Outputs image to browser.
+  	 */
+  	public function toBrowser()
+    {
+        $this->canvas->show($this->type,  $this->qualityOption());
+    }
+
+  	/**
+  	 * Outputs image to file.
+  	 *
+  	 * @param $name Filename to output to.
+  	 */
   	public function toFile($name)
     {
-        $this->canvas->show($name, $this->type);
+        $type = strtolower(substr(strrchr($name, '.'), 1));
+        $this->canvas->show($name, $this->qualityOption($type));
     }
 }
