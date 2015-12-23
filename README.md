@@ -16,3 +16,24 @@ Get is through composer
 ```
 composer require hedronium/avity dev-master
 ```
+### Install Using Command line
+```PHP
+{
+  "require": {
+    "hedronium/avity": "dev-master"
+  }
+}
+```
+
+# Requirements
+
+* PHP 5.4+
+* GD2 library
+* Imagine library
+
+# Getting started  
+```PHP
+require_once 'vendor/autoload.php';
+use Hedronium\Avity\Avity;
+
+```
