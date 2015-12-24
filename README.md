@@ -59,7 +59,7 @@ $avity->generate()
 
 ### Image-Height
 You Can  change height of image
-```
+```PHP
 $avity = Avity::init()
 ->height(400);
 
@@ -68,7 +68,7 @@ $avity->generate()
 ->toBrowser();
 ```
 ### Image-Width
-```
+```PHP
 $avity = Avity::init()
 ->width(400);
 
@@ -78,7 +78,7 @@ $avity->generate()
 
 ```
 ### Image-Columns
-```
+```PHP
 $avity = Avity::init()
 ->columns(400);
 
@@ -87,7 +87,7 @@ $avity->generate()
 ->toBrowser();
 ```
 ### Image-Rows
-```
+```PHP
 $avity = Avity::init()
 ->rows(400);
 
@@ -96,7 +96,7 @@ $avity->generate()
 ->toBrowser();
 ```
 ### Image-Padding
-```
+```PHP
 $avity = Avity::init()
 ->padding(400);
 
@@ -105,7 +105,7 @@ $avity->generate()
 ->toBrowser();
 ```
 ### Layout-Rows
-```
+```PHP
 $avity = Avity::init();
 $avity->layout()
 ->rows(8);
@@ -115,7 +115,7 @@ $avity->generate()
 ->toBrowser();
 ```
 ### Style-Spacing
-```
+```PHP
 $avity = Avity::init();
 $avity->style()
 ->spacing(3);
