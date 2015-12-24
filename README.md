@@ -155,3 +155,31 @@ $avity->generate()
 ->png()
 ->toBrowser();
 ```
+## Generatable images
+
+- [Triangle Style](#Triangle-Style)
+- [Squre style](#Square-Style)
+- [Circle style](#Circle-Style)
+
+### Triangle-Style
+```PHP
+use Hedronium\Avity\Avity;
+$avity = Avity::init(0, 0, Avity::TRIANGLE_STYLE);
+$avity->style();
+$avity->generate()->jpg()->toBrowser();
+```
+### Square-Style  
+
+```PHP
+use Hedronium\Avity\Avity;
+$avity = Avity::init(0, 0, Avity::SQUARE_STYLE);
+$avity->style();
+$avity->generate()->jpg()->toBrowser();
+```
+### Circle-Style
+```PHP
+use Hedronium\Avity\Avity;
+$avity = Avity::init(0, 0, Avity::CIRCLE_STYLE);
+$avity->style();
+$avity->generate()->jpg()->toBrowser();
+```
