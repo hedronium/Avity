@@ -47,12 +47,82 @@ $avity->generate()
 ->toBrowser();
 ```
 ## Available Customization
-- [Hight Customization](#height)
-- [Width Customization](#width)
-- [Columns Customization](#Columns)
-- [Rows Customization](#rows)
-- [Padding Customization](#padding)
-- [Layout customization (rows)](#layout-rows)
-- [Style spacing Customization](#spacing-spacing)
-- [Style width Customization](#style-width)
-- [Generate image types ](#generate-type)
+- [Hight Customization](#Image-Height)
+- [Width Customization](#Image-Width)
+- [Columns Customization](#Image-Columns)
+- [Rows Customization](#Image-Rows)
+- [Padding Customization](#Image-Padding)
+- [Layout customization (rows)](#Layout-Rows)
+- [Style spacing Customization](#Style-Spacing)
+- [Style width Customization](#Style-Width)
+- [Generate image types ](#Generate-Type)
+
+### Image-Height
+You Can  change height of image
+```
+$avity = Avity::init()
+->height(400);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+```
+### Image-Width
+```
+$avity = Avity::init()
+->width(400);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+
+```
+### Image-Columns
+```
+$avity = Avity::init()
+->columns(400);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+```
+### Image-Rows
+```
+$avity = Avity::init()
+->rows(400);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+```
+### Image-Padding
+```
+$avity = Avity::init()
+->padding(400);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+```
+### Layout-Rows
+```
+$avity = Avity::init();
+$avity->layout()
+->rows(8);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+```
+### Style-Spacing
+```
+$avity = Avity::init();
+$avity->style()
+->spacing(3);
+
+$avity->generate()
+->jpg()
+->toBrowser();
+
+```
+### Style-Width
