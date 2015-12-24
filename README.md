@@ -49,15 +49,15 @@ $avity->generate()
 ->toBrowser();
 ```
 ## Available Customization
-- [Hight Customization](#Image-Height)
-- [Width Customization](#Image-Width)
-- [Columns Customization](#Image-Columns)
-- [Rows Customization](#Image-Rows)
-- [Padding Customization](#Image-Padding)
-- [Layout customization (rows)](#Layout-Rows)
-- [Style spacing Customization](#Style-Spacing)
-- [Style width Customization](#Style-Width)
-- [Generate image types ](#Generate-Type)
+- [Image-Height](#Image-Height)
+- [Image-Width](#Image-Width)
+- [Image-Columns](#Image-Columns)
+- [Image-Rows](#Image-Rows)
+- [Image-Padding](#Image-Padding)
+- [Layout-Rows](#Layout-Rows)
+- [Style-Spacing](#Style-Spacing)
+- [Style-Spacing](#Style-Spacing)
+- [Generate-Type](#Generate-Type)
 
 ### Image-Height
 You Can  change height of image
