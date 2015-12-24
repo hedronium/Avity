@@ -1,5 +1,5 @@
 # Avity - Alpha
-Highly Customisable image Generator library
+Highly Customizable image Generator library
 ## Features
 
 ✓ Generate Square images  
