@@ -183,3 +183,11 @@ $avity = Avity::init(0, 0, Avity::CIRCLE_STYLE);
 $avity->style();
 $avity->generate()->jpg()->toBrowser();
 ```
+### Square Circle-Style
+```PHP
+use Hedronium\Avity\Avity;
+$avity = Avity::init(0, 0, Avity::SQUARE_CIRCLE_STYLE);
+$avity->style();
+$avity->generate()->jpg()->toBrowser();
+```
+
