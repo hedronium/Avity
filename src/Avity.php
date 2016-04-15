@@ -5,88 +5,116 @@ use Imagine\Image\ImagineInterface;
 
 class Avity
 {
-    const HASHED_GENERATOR = 1;
-  	const RANDOM_GENERATOR = 2;
-
-  	const VERTICAL_MIRROR_LAYOUT = 1;
-    const HORIZONTAL_MIRROR_LAYOUT = 2;
-  	const DIAGONAL_MIRROR_LAYOUT = 3;
-
-  	const SQUARE_STYLE = 1;
-    const CIRCLE_STYLE = 2;
-    const SQUARE_CIRCLE_STYLE = 3;
-  	const TRIANGLE_STYLE = 4;
-
   	protected $generator = null;
     protected $layout    = null;
     protected $style 	 = null;
   	protected $drawer 	 = null;
 
+    /**
+     * Factory for Generator Classes
+     *
+     * @param $generator string The classname of the Generator
+     */
+    protected static function generator_construct($generator)
+    {
+        if(class_exists($generator)) {
+            return new $generator();
+        }
+
+        throw new \Exception('The Generator class wasn\'t found.');
+    }
+
+    /**
+     * Factory for Layout Classes
+     *
+     * @param $layout string The classname of the Layout
+     * @param $generator Generator A generator Object
+     */
+    protected static function layout_construct($layout, $generator)
+    {
+        if(class_exists($layout)) {
+            return new $layout($generator);
+        }
+
+        throw new \Exception('The Layout class wasn\'t found.');
+    }
+
+    /**
+     * Factory for Drawer Classes
+     *
+     * @param $drawer string The classname of the Drawing Library Class
+     */
+    protected static function drawer_construct($drawer)
+    {
+        if(class_exists($drawer)) {
+            return new $drawer();
+        } else {
+            if (class_exists("Imagick")) {
+                // If Imagick is installed
+                return new \Imagine\Imagick\Imagine();
+            } elseif (function_exists('imagecolorallocate')) {
+                // If Gd is Installed
+                return new \Imagine\Gd\Imagine();
+            } else {
+                throw new \Exception('Neither ImageMagik nor PHP GD is installed.');
+            }
+        }
+    }
+
+    /**
+     * Factory for Stlye Classes
+     *
+     * @param $layout string The classname of the Style
+     * @param $layout Generator A Layout Object
+     * @param $generator Generator A Generator Object
+     * @param $drawer Generator A Drawer Object
+     */
+    protected static function style_construct($style, $layout, $generator, $drawer)
+    {
+        if(class_exists($style)) {
+            return new $style($layout, $generator, $drawer);
+        }
+
+        throw new \Exception('The Stlye class wasn\'t found.');
+    }
+
   	/**
     * Factory for Avity.
     *
-    * @param $generator string|integer The Generator to be Used
-    * @param $layout string|integer The Layout to be Used
-    * @param $style string|integer The Style to be Used
+    * @param $generator string|callback The Generator Class to be Used
+    * @param $layout string|callback The Layout Class to be Used
+    * @param $style string|callback The Style Class to be Used
+    * @param $drawer string|callback The Drawing Class to be Used
     */
-  	public static function init($generator = self::HASHED_GENERATOR, $layout = self::VERTICAL_MIRROR_LAYOUT, $style = self::SQUARE_STYLE)
+  	public static function init($generator = Generators\Random::class, $layout = Layouts\VerticalMirror::class, $style = Styles\Square::class, $drawer = '')
     {
         $generator_obj = null;
       	$layout_obj = null;
       	$style_obj = null;
         $drawer_obj = null;
 
-      	switch ($generator) {
-            case static::RANDOM_GENERATOR:
-                $generator_obj = new Generators\Random;
-                break;
-
-            case static::HASHED_GENERATOR:
-      		default:
-      			$generator_obj = new Generators\Hash;
-        }
-
-      	switch ($layout) {
-            case static::DIAGONAL_MIRROR_LAYOUT:
-                $layout_obj = new Layouts\DiagonalMirror($generator_obj);
-                break;
-
-      		case static::HORIZONTAL_MIRROR_LAYOUT:
-                $layout_obj = new Layouts\HorizontalMirror($generator_obj);
-                break;
-
-  			case static::VERTICAL_MIRROR_LAYOUT:
-      		default:
-      			$layout_obj = new Layouts\VerticalMirror($generator_obj);
-        }
-
-        if (class_exists("Imagick")) {
-            // If Imagick is installed
-            $drawer_obj = new \Imagine\Imagick\Imagine();
-        } elseif (function_exists('imagecolorallocate')) {
-            // If Gd is Installed
-            $drawer_obj = new \Imagine\Gd\Imagine();
+        if (is_callable($generator)) {
+            $generator_obj = $generator();
         } else {
-            throw new \Exception('Neither ImageMagik nor PHP GD is installed.');
+            $generator_obj = static::generator_construct($generator);
         }
 
+        if (is_callable($layout)) {
+            $layout_obj = $layout($generator_obj);
+        } else {
+            $layout_obj = static::layout_construct($layout, $generator_obj);
+        }
 
-      	switch ($style) {
-            case static::TRIANGLE_STYLE:
-                $style_obj = new Styles\Triangle($layout_obj, $generator_obj, $drawer_obj);
-                break;
+        if (is_callable($drawer)) {
+            $drawer_obj = $drawer();
+        } else {
+            $drawer_obj = static::drawer_construct($drawer);
+        }
 
-            case static::SQUARE_CIRCLE_STYLE:
-                $style_obj = new Styles\SquareCircle($layout_obj, $generator_obj, $drawer_obj);
-                break;
-
-            case static::CIRCLE_STYLE:
-                $style_obj = new Styles\Circle($layout_obj, $generator_obj, $drawer_obj);
-                break;
-
-  			case static::SQUARE_STYLE:
-            default:
-      			$style_obj = new Styles\Square($layout_obj, $generator_obj, $drawer_obj);
+        if (is_callable($style)) {
+            $style_obj = $style($layout_obj, $generator_obj, $drawer_obj);
+        } else {
+            $style_obj = static::style_construct($style, $layout_obj, $generator_obj, $drawer_obj);
         }
 
       	return new static($generator_obj, $layout_obj, $style_obj, $drawer_obj);
