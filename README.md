@@ -148,6 +148,10 @@ Avity comes with 3 built in `Layout` classes:
 - `\Hedronium\Avity\Layouts\HorizontalMirror`
 - `\Hedronium\Avity\Layouts\DiagonalMirror`
 
+![Avity](http://hedronium.github.io/Avity/images/vertical_mirror.jpeg)
+![Avity](http://hedronium.github.io/Avity/images/horizontal_mirror.jpeg)
+![Avity](http://hedronium.github.io/Avity/images/diagonal_mirror.jpeg)
+
 changing the layout class
 
 ```PHP
@@ -164,6 +168,11 @@ Avity comes with 4 built in `Style` classes:
 - `\Hedronium\Avity\Styles\SquareCircle`
 - `\Hedronium\Avity\Styles\Circle`
 - `\Hedronium\Avity\Styles\Triangle`
+
+![Avity](http://hedronium.github.io/Avity/images/vertical_mirror.jpeg)
+![Avity](http://hedronium.github.io/Avity/images/circle.jpeg)
+![Avity](http://hedronium.github.io/Avity/images/square_circle.jpeg)
+![Avity](http://hedronium.github.io/Avity/images/triangle.jpeg)
 
 changing the style class
 
