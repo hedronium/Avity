@@ -86,7 +86,7 @@ class Avity
     * @param $style string|callback The Style Class to be Used
     * @param $drawer string|callback The Drawing Class to be Used
     */
-  	public static function init($generator = Generators\Random::class, $layout = Layouts\VerticalMirror::class, $style = Styles\Square::class, $drawer = '')
+  	public static function init($generator = '\\Hedronium\\Avity\\Generators\\Random', $layout = '\\Hedronium\\Avity\\Layouts\\VerticalMirror', $style = '\\Hedronium\\Avity\\Styles\\Square', $drawer = '')
     {
         $generator_obj = null;
       	$layout_obj = null;
