@@ -86,8 +86,20 @@ class Avity
     * @param $style string|callback The Style Class to be Used
     * @param $drawer string|callback The Drawing Class to be Used
     */
-  	public static function init($generator = '\\Hedronium\\Avity\\Generators\\Random', $layout = '\\Hedronium\\Avity\\Layouts\\VerticalMirror', $style = '\\Hedronium\\Avity\\Styles\\Square', $drawer = '')
+  	public static function init($options = [])
     {
+        $options = array_merge([
+            'generator' => '\\Hedronium\\Avity\\Generators\\Hash',
+            'layout' => '\\Hedronium\\Avity\\Layouts\\VerticalMirror',
+            'style' => '\\Hedronium\\Avity\\Styles\\Square',
+            'drawer' => ''
+        ], $options);
+
+        $generator = $options['generator'];
+        $layout = $options['layout'];
+        $style = $options['style'];
+        $drawer = $options['drawer'];
+
         $generator_obj = null;
       	$layout_obj = null;
       	$style_obj = null;
