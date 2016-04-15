@@ -118,6 +118,35 @@ instance can be fetched with the <code>style()</code> method on the <code>Avity<
 <img src="http://hedronium.github.io/Avity/images/varied_1.jpeg" alt="Varied Color"></p>
 
 <h1>
+<a id="controlling-the-output" class="anchor" href="#controlling-the-output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Controlling the Output</h1>
+
+<h2>
+<a id="output-format" class="anchor" href="#output-format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output Format</h2>
+
+<p>Avity can output as <code>jpg</code>, <code>png</code> or <code>gif</code></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span>
+<span class="pl-s1"><span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>png()<span class="pl-k">-&gt;</span>toBrowser();</span>
+<span class="pl-s1"><span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>gif()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h2>
+<a id="output-quality" class="anchor" href="#output-quality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output Quality</h2>
+
+<p>The quality of the generated image may also be set. Give it a number between 1 and 100. (Only aplicable for <code>jpg</code> &amp; <code>png</code>)</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>quality(<span class="pl-c1">80</span>)<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h2>
+<a id="output-to-browser" class="anchor" href="#output-to-browser" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output To Browser</h2>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h2>
+<a id="output-to-file" class="anchor" href="#output-to-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Output To File</h2>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toFile(<span class="pl-s"><span class="pl-pds">'</span>/server/potato.jpg<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h1>
 <a id="generators" class="anchor" href="#generators" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generators</h1>
 
 <p><code>Generators</code> are objects that generate numbers. These numbers are used by Layouts
