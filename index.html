@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Avity by Hedronium</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Avity</h1>
+          <h2>Highly Extensible and Customizable Identicon Generator</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/Hedronium/Avity/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/Hedronium/Avity/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/Hedronium/Avity" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="avity" class="anchor" href="#avity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Avity</h1>
+
+<hr>
+
+<p>Highly Customizable Identicon Generator for PHP.</p>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Get it through composer cli.</p>
+
+<pre><code>composer require hedronium/avity
+</code></pre>
+
+<p>or by adding it to your <code>composer.json</code></p>
+
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>hedronium/avity<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>^1.0<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+
+<p>and running <code>composer install</code></p>
+
+<h1>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Hedronium\Avity\Avity</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init()<span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<p>Thats it thats all you really need to generate an Identicon.
+The above code will generate an Identicon based on Random values.</p>
+
+<h1>
+<a id="basic-customization" class="anchor" href="#basic-customization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Customization</h1>
+
+<h2>
+<a id="customizing-image-dimensions" class="anchor" href="#customizing-image-dimensions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customizing Image Dimensions</h2>
+
+<p>You can call the <code>height($value)</code> and <code>width($value)</code> method on the <code>Avity</code> instance
+after initialization. Like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>height(<span class="pl-c1">600</span>)<span class="pl-k">-&gt;</span>width(<span class="pl-c1">500</span>); <span class="pl-c">// Long Vertical Identicon. WOW!</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<p>Yes, its a Fluent API, method chaining is cool!</p>
+
+<h2>
+<a id="customizing-the-grid" class="anchor" href="#customizing-the-grid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customizing the Grid</h2>
+
+<p>You can call the <code>rows($value)</code> and <code>columns($value)</code> method on the <code>Avity</code> instance
+after initialization. Like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>rows(<span class="pl-c1">3</span>)<span class="pl-k">-&gt;</span>columns(<span class="pl-c1">3</span>); <span class="pl-c">// 3x3 Grid</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h2>
+<a id="padding" class="anchor" href="#padding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Padding</h2>
+
+<p>You can call the <code>padding($value)</code> method on the <code>Avity</code> instance</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>padding(<span class="pl-c1">100</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h2>
+<a id="style-specific-customizations" class="anchor" href="#style-specific-customizations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Style Specific Customizations.</h2>
+
+<p>Often the style class used has specific methods that customize its behaviour
+which are not directly available on the Avity object for such cases the style
+instace can be fetched with the <code>style()</code> method on the <code>Avity</code> instance.</p>
+
+<p>Like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>style()<span class="pl-k">-&gt;</span>variedColor()<span class="pl-k">-&gt;</span>spacing(<span class="pl-c1">10</span>); <span class="pl-c">// `spacing()` &amp; `variedColor()` is a style specific method</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h1>
+<a id="generators" class="anchor" href="#generators" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generators</h1>
+
+<p><code>Generators</code> are objects that generate numbers. These numbers are used by Layouts
+to set blocks onto the grid.</p>
+
+<p>Avity comes built in with two generators <code>Hash</code> &amp; <code>Random</code></p>
+
+<p>To use a different generator you can pass in an associative array
+of options with the <code>generator</code> key and the class bane as the value. Like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>generator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">\Hedronium\Avity\Generators\</span><span class="pl-c1">Hash</span><span class="pl-k">::</span><span class="pl-c1">class</span></span>
+<span class="pl-s1">]);</span></pre></div>
+
+<p>available classes:</p>
+
+<ul>
+<li>
+<code>\Hedronium\Avity\Generators\Hash</code> (<em>default</em>)</li>
+<li><code>\Hedronium\Avity\Generators\Random</code></li>
+</ul>
+
+<h2>
+<a id="the-hash-generator" class="anchor" href="#the-hash-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The Hash Generator</h2>
+
+<p>Once you got the generator setup like above to pass in a value to hash you can call <code>hash()</code> on the <code>Avity</code> instance.
+(it can be anything, like the user's username or email address or id)</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>generator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">\Hedronium\Avity\Generators\</span><span class="pl-c1">Hash</span><span class="pl-k">::</span><span class="pl-c1">class</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>hash(<span class="pl-s"><span class="pl-pds">'</span>I like Bananas and I cannot lie.<span class="pl-pds">'</span></span>); <span class="pl-c">// I really like bananas.</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<p>This will generate the same identicon each time you give it the same value to hash.</p>
+
+<h1>
+<a id="layouts" class="anchor" href="#layouts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Layouts</h1>
+
+<p><code>Layout</code> objects use <code>Generator</code> objects to set blocks onto the grid.
+Avity comes with 3 built in <code>Layout</code> classes:</p>
+
+<ul>
+<li>
+<code>\Hedronium\Avity\Layouts\VerticalMirror</code> (<em>default</em>)</li>
+<li><code>\Hedronium\Avity\Layouts\HorizontalMirror</code></li>
+<li><code>\Hedronium\Avity\Layouts\DiagonalMirror</code></li>
+</ul>
+
+<p>changing the layout class</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>layout<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">\Hedronium\Avity\Layouts\</span><span class="pl-c1">DiagonalMirror</span><span class="pl-k">::</span><span class="pl-c1">class</span></span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h1>
+<a id="styles" class="anchor" href="#styles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Styles</h1>
+
+<p><code>Style</code> objects use <code>Layout</code> objects to draw the grid onto a canvas.
+Avity comes with 4 built in <code>Style</code> classes:</p>
+
+<ul>
+<li>
+<code>\Hedronium\Avity\Styles\Square</code> (<em>default</em>)</li>
+<li><code>\Hedronium\Avity\Styles\SquareCircle</code></li>
+<li><code>\Hedronium\Avity\Styles\Circle</code></li>
+<li><code>\Hedronium\Avity\Styles\Triangle</code></li>
+</ul>
+
+<p>changing the style class</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>layout<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">\Hedronium\Avity\Styles\</span><span class="pl-c1">Triangle</span><span class="pl-k">::</span><span class="pl-c1">class</span></span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h2>
+<a id="spacing" class="anchor" href="#spacing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>spacing()</h2>
+
+<p>All built in <code>Style</code> classes have a <code>spacing(_int_ $value)</code> method that can be
+used to set the space between blocks.
+Like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init();</span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>style()<span class="pl-k">-&gt;</span>spacing(<span class="pl-c1">30</span>);</span></pre></div>
+
+<h2>
+<a id="variedcolor" class="anchor" href="#variedcolor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>variedColor()</h2>
+
+<p>This ones a fun method available to all default <code>Style</code> classes. Just call it and see the magic happen.
+Like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>style()<span class="pl-k">-&gt;</span>variedColor();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
+
+<h1>
+<a id="advanced-customization" class="anchor" href="#advanced-customization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Customization</h1>
+
+<h2>
+<a id="custom-generator" class="anchor" href="#custom-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom Generator</h2>
+
+<p>A generator class should always extend <code>Hedronium\Avity\Generator</code>
+example:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Hedronium\Avity\Generator</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * A Generator that uses php's `rand()` function.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">YourRandGenerator</span> <span class="pl-k">extends</span> <span class="pl-e">Generator</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">next</span>(<span class="pl-smi">$x</span>, <span class="pl-smi">$y</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">// You could use the $x &amp; $y values to</span></span>
+<span class="pl-s1">        <span class="pl-c">// return something specific but usually it souldn't matter.</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-c1">rand</span>();</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<h3>
+<a id="using-a-custom-generator" class="anchor" href="#using-a-custom-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using a custom generator</h3>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>generator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">YourRandGenerator</span><span class="pl-k">::</span><span class="pl-c1">class</span></span>
+<span class="pl-s1">]);</span></pre></div>
+
+<p>it is possible that you need to pass construction parameters when instantiating
+your generator, for such cases you may set a callback with constructs your generator
+like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>generator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-k">function</span> () {</span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-c1">YourRandGenerator</span>(<span class="pl-s"><span class="pl-pds">'</span>Please be very random.<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h2>
+<a id="custom-layouts" class="anchor" href="#custom-layouts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom Layouts</h2>
+
+<p>A generator class should always extend <code>Hedronium\Avity\Layout</code>
+example:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Hedronium\Avity\Layout</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * A Generator that uses php's `rand()` function.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">NoMirror</span> <span class="pl-k">extends</span> <span class="pl-e">Layout</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">drawGrid</span>(<span class="pl-k">array</span> <span class="pl-smi">$values</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">// Sometimes, some style objects are not binary</span></span>
+<span class="pl-s1">        <span class="pl-c">// they may draw more than one shape of block</span></span>
+<span class="pl-s1">        <span class="pl-c">// thus the `$values` variable is passed in by the style.</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-smi">$grid</span> <span class="pl-k">=</span> [];</span>
+<span class="pl-s1">        <span class="pl-k">for</span> (<span class="pl-smi">$y</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>; <span class="pl-smi">$y</span> <span class="pl-k">&lt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">rows</span>; <span class="pl-smi">$y</span><span class="pl-k">++</span>) {</span>
+<span class="pl-s1">            <span class="pl-smi">$grid</span>[<span class="pl-smi">$y</span>] <span class="pl-k">=</span> [];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">            <span class="pl-k">for</span> (<span class="pl-smi">$x</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>; <span class="pl-smi">$x</span> <span class="pl-k">&lt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">columns</span>; <span class="pl-smi">$x</span><span class="pl-k">++</span>) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-c">// should draw takes the `$values` and</span></span>
+<span class="pl-s1">                <span class="pl-c">// returns a value based on</span></span>
+<span class="pl-s1">                <span class="pl-c">// generator output</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-smi">$grid</span>[<span class="pl-smi">$y</span>][<span class="pl-smi">$x</span>] <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>shouldDraw(<span class="pl-smi">$values</span>);</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-smi">$grid</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>Please check the source code for more details. (We promise its simple and readable.)</p>
+
+<h3>
+<a id="using-a-custom-layout" class="anchor" href="#using-a-custom-layout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using a custom layout</h3>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>generator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">NoMirror</span><span class="pl-k">::</span><span class="pl-c1">class</span></span>
+<span class="pl-s1">]);</span></pre></div>
+
+<p>it is possible that you need to pass construction parameters when instantiating
+your layout, for such cases you may set a callback with constructs your layout
+like:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$avity</span> <span class="pl-k">=</span> <span class="pl-c1">Avity</span><span class="pl-k">::</span>init([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>generator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-k">function</span> (<span class="pl-smi">$generator</span>) {</span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-c1">NoMirror</span>(<span class="pl-smi">$generator</span>, <span class="pl-s"><span class="pl-pds">'</span>POTATO<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">]);</span></pre></div>
+
+<p>the callback receive the generator instance as it's very likely that you
+will be generating the grid based on the generaotr output.</p>
+        </section>
+
+        <footer>
+          Avity is maintained by <a href="https://github.com/Hedronium">Hedronium</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
