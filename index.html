@@ -1,42 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <title>Avity by Hedronium</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Avity by Hedronium</title>
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+    <div class="wrapper">
+      <header>
+        <h1>Avity</h1>
+        <p>Highly Extensible and Customizable Identicon Generator</p>
 
-        <header>
-          <h1>Avity</h1>
-          <h2>Highly Extensible and Customizable Identicon Generator</h2>
-        </header>
+        <p class="view"><a href="https://github.com/Hedronium/Avity">View the Project on GitHub <small>Hedronium/Avity</small></a></p>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/Hedronium/Avity/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/Hedronium/Avity/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/Hedronium/Avity" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
 
-        <hr>
-
-        <section id="main_content">
-          <h1>
+        <ul>
+          <li><a href="https://github.com/Hedronium/Avity/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Hedronium/Avity/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Hedronium/Avity">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
 <a id="avity" class="anchor" href="#avity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Avity</h1>
 
 <hr>
 
-<p><img src="http://hedronium.github.io/Avity/images/varied_1.jpeg" alt="Avity"><br>
+<p><img src="http://hedronium.github.io/Avity/images/varied_1.jpeg"><br>
 Highly Customizable Identicon Generator for PHP.</p>
 
 <h1>
@@ -84,8 +81,6 @@ after initialization. Like:</p>
 
 <p>Yes, its a Fluent API, method chaining is cool!</p>
 
-<p><img src="http://hedronium.github.io/Avity/images/vertical.jpeg" alt="Varied Color"></p>
-
 <h2>
 <a id="customizing-the-grid" class="anchor" href="#customizing-the-grid" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customizing the Grid</h2>
 
@@ -98,7 +93,7 @@ after initialization. Like:</p>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-smi">$avity</span><span class="pl-k">-&gt;</span>generate()<span class="pl-k">-&gt;</span>jpg()<span class="pl-k">-&gt;</span>toBrowser();</span></pre></div>
 
-<p><img src="http://hedronium.github.io/Avity/images/3_b_3.jpeg" alt="Varied Color"></p>
+<p><img src="http://hedronium.github.io/Avity/images/3_by_3.jpeg" alt="Varied Color"></p>
 
 <h2>
 <a id="padding" class="anchor" href="#padding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Padding</h2>
@@ -184,8 +179,7 @@ Avity comes with 3 built in <code>Layout</code> classes:</p>
 </ul>
 
 <p><img src="http://hedronium.github.io/Avity/images/vertical_mirror.jpeg" alt="Avity">
-<img src="http://hedronium.github.io/Avity/images/horizontal_mirror.jpeg" alt="Avity">
-<img src="http://hedronium.github.io/Avity/images/diagonal_mirror.jpeg" alt="Avity"></p>
+<img src="http://hedronium.github.io/Avity/images/horizontal_mirror.jpeg" alt="Avity"></p>
 
 <p>changing the layout class</p>
 
@@ -208,9 +202,7 @@ Avity comes with 4 built in <code>Style</code> classes:</p>
 </ul>
 
 <p><img src="http://hedronium.github.io/Avity/images/vertical_mirror.jpeg" alt="Avity">
-<img src="http://hedronium.github.io/Avity/images/circle.jpeg" alt="Avity">
-<img src="http://hedronium.github.io/Avity/images/square_circle.jpeg" alt="Avity">
-<img src="http://hedronium.github.io/Avity/images/triangle.jpeg" alt="Avity"></p>
+<img src="http://hedronium.github.io/Avity/images/circle.jpeg" alt="Avity"></p>
 
 <p>changing the style class</p>
 
@@ -344,15 +336,13 @@ like:</p>
 
 <p>the callback receive the generator instance as it's very likely that you
 will be generating the grid based on the generaotr output.</p>
-        </section>
-
-        <footer>
-          Avity is maintained by <a href="https://github.com/Hedronium">Hedronium</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Hedronium">Hedronium</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
