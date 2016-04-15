@@ -1,6 +1,7 @@
 # Avity
 ---
-<img src="http://hedronium.github.io/Avity/images/varied_1.jpeg" style="width: 5em !important;">  
+![Logo](http://hedronium.github.io/Avity/images/varied_1.jpeg)  
+
 Highly Customizable Identicon Generator for PHP.
 
 
@@ -11,16 +12,6 @@ Get it through composer cli.
 composer require hedronium/avity
 ```
 
-or by adding it to your `composer.json`
-```JSON
-{
-    "require": {
-        "hedronium/avity": "^1.0"
-    }
-}
-```
-
-and running `composer install`
 
 # Getting Started
 ```PHP
@@ -43,7 +34,6 @@ after initialization. Like:
 
 ```PHP
 $avity = Avity::init();
-
 $avity->height(600)->width(500); // Long Vertical Identicon. WOW!
 
 $avity->generate()->jpg()->toBrowser();
@@ -51,38 +41,42 @@ $avity->generate()->jpg()->toBrowser();
 
 Yes, its a Fluent API, method chaining is cool!
 
+## Customizing Background & Foreground Color
+```PHP
+$avity = Avity::init();
+
+$avity->style()->background(20, 20, 40)
+->foreground(100, 240, 255);
+```
+Both the methods accept `$r, $g, $b` parameters.
+
+![Dark](http://hedronium.github.io/Avity/images/dark.jpeg)  
 
 ## Customizing the Grid
-You can call the `rows($value)` and `columns($value)` method on the `Avity` instance
-after initialization. Like:
-
 ```PHP
 $avity = Avity::init();
 
 $avity->rows(3)->columns(3); // 3x3 Grid
-
-$avity->generate()->jpg()->toBrowser();
 ```
 
-![Varied Color](http://hedronium.github.io/Avity/images/3_by_3.jpeg)
+![3 by 3](http://hedronium.github.io/Avity/images/3_by_3.jpeg)  
+
+
 
 ## Padding
-You can call the `padding($value)` method on the `Avity` instance
-
-![Padded](http://hedronium.github.io/Avity/images/padded.jpeg)  
+![Padding](http://hedronium.github.io/Avity/images/padded.jpeg)  
 
 ```PHP
 $avity = Avity::init();
 
-$avity->padding(100);
-
-$avity->generate()->jpg()->toBrowser();
+$avity->padding(100); //100px padding
 ```
+
 
 ## Style Specific Customizations.
 Often the style class used has specific methods that customize its behaviour
 which are not directly available on the Avity object for such cases the style
-instace can be fetched with the `style()` method on the `Avity` instance.
+instance can be fetched with the `style()` method on the `Avity` instance.
 
 Like:
 
@@ -90,8 +84,6 @@ Like:
 $avity = Avity::init();
 
 $avity->style()->variedColor()->spacing(10); // `spacing()` & `variedColor()` is a style specific method
-
-$avity->generate()->jpg()->toBrowser();
 ```
 
 ![Varied Color](http://hedronium.github.io/Avity/images/varied_2.jpeg)
@@ -102,8 +94,6 @@ $avity->generate()->jpg()->toBrowser();
 `Generators` are objects that generate numbers. These numbers are used by Layouts
 to set blocks onto the grid.
 
-Avity comes built in with two generators `Hash` & `Random`
-
 To use a different generator you can pass in an associative array
 of options with the `generator` key and the class bane as the value. Like:
 
@@ -113,11 +103,11 @@ $avity = Avity::init([
 ]);
 ```
 
-
 available classes:
 
 - `\Hedronium\Avity\Generators\Hash` (_default_)
 - `\Hedronium\Avity\Generators\Random`
+
 
 
 
@@ -130,9 +120,7 @@ $avity = Avity::init([
     'generator' => \Hedronium\Avity\Generators\Hash::class
 ]);
 
-$avity->hash('I like Bananas and I cannot lie.'); // I really like bananas.
-
-$avity->generate()->jpg()->toBrowser();
+$avity->hash('I like Bananas.'); // I really like bananas
 ```
 
 This will generate the same identicon each time you give it the same value to hash.
@@ -195,10 +183,7 @@ Like:
 
 ```PHP
 $avity = Avity::init();
-
 $avity->style()->variedColor();
-
-$avity->generate()->jpg()->toBrowser();
 ```
 
 # Advanced Customization
@@ -232,9 +217,7 @@ $avity = Avity::init([
 ]);
 ```
 
-it is possible that you need to pass construction parameters when instantiating
-your generator, for such cases you may set a callback with constructs your generator
-like:
+Take construction into your own hands.
 
 ```PHP
 $avity = Avity::init([
@@ -246,7 +229,6 @@ $avity = Avity::init([
 
 ## Custom Layouts
 A generator class should always extend `Hedronium\Avity\Layout`
-example:
 
 ```PHP
 <?php
@@ -291,9 +273,7 @@ $avity = Avity::init([
 ]);
 ```
 
-it is possible that you need to pass construction parameters when instantiating
-your layout, for such cases you may set a callback with constructs your layout
-like:
+take construction into your own hands.
 
 ```PHP
 $avity = Avity::init([
