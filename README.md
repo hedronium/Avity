@@ -1,193 +1,188 @@
-# Avity - Alpha
-Highly Customizable image Generator library
-## Features
+# Avity
+---
+Highly Customizable Identicon Generator for PHP.
+---
 
-✓ Generate Square images  
-✓ Generate pyramid based images  
-✓ Generate Round images  
-✓ Generate Color images  
-✓ Diagonal Mirror images  
-✓ Triangle style images  
-✓ Generate Custom colored images  
-✓ Extendable libray  
-✓ Randomly generate image  
-✓ Generate image based on hashed value  
+# Installation  
+Get it through composer cli.
 
-## Installation  
-Get is through composer  
 ```
-composer require hedronium/avity dev-master
+composer require hedronium/avity
 ```
-### Install Using composer.json
-```PHP
+
+or by adding it to your `composer.json`
+```JSON
 {
-  "require": {
-    "hedronium/avity": "dev-master"
-  }
+    "require": {
+        "hedronium/avity": "^1.0"
+    }
 }
 ```
 
-## Requirements
+and running `composer install`
 
-* PHP 5.4+
-* GD2 library
-* Imagine library
-
-## Getting started  
+# Getting Started
 ```PHP
-require_once 'vendor/autoload.php';
 use Hedronium\Avity\Avity;
 
-// initialize avity class
-$avity = Avity::init();
-
-/*
-Generate image in jpeg format and show in browser
-*/
-$avity->generate()
-->jpg()
-->toBrowser();
+$avity = Avity::init()->generate()->jpg()->toBrowser();
 ```
-## Available Customization
-- [Hight Customization](#Image-Height)
-- [Width Customization](#Image-Width)
-- [Columns Customization](#Image-Columns)
-- [Rows Customization](#Image-Rows)
-- [Padding Customization](#Image-Padding)
-- [Layout customization (rows)](#Layout-Rows)
-- [Style spacing Customization](#Style-Spacing)
-- [Style width Customization](#Style-Width)
-- [Generate image types ](#Generate-Type)
 
-### Image-Height
-You Can  change height of image
-```PHP
-$avity = Avity::init()
-->height(400);
+Thats it thats all you really need to generate an Identicon.
+The above code will generate an Identicon based on Random values.
 
-$avity->generate()
-->jpg()
-->toBrowser();
-```
-### Image-Width
-```PHP
-$avity = Avity::init()
-->width(400);
 
-$avity->generate()
-->jpg()
-->toBrowser();
 
-```
-### Image-Columns
-```PHP
-$avity = Avity::init()
-->columns(400);
 
-$avity->generate()
-->jpg()
-->toBrowser();
-```
-### Image-Rows
-```PHP
-$avity = Avity::init()
-->rows(400);
+# Basic Customization
 
-$avity->generate()
-->jpg()
-->toBrowser();
-```
-### Image-Padding
-```PHP
-$avity = Avity::init()
-->padding(400);
+## Customizing Image Dimensions
+You can call the `height($value)` and `width($value)` method on the `Avity` instance
+after initialization. Like:
 
-$avity->generate()
-->jpg()
-->toBrowser();
-```
-### Layout-Rows
-```PHP
-$avity = Avity::init();
-$avity->layout()
-->rows(8);
-
-$avity->generate()
-->jpg()
-->toBrowser();
-```
-### Style-Spacing
-```PHP
-$avity = Avity::init();
-$avity->style()
-->spacing(3);
-
-$avity->generate()
-->jpg()
-->toBrowser();
-
-```
-### Style-Width
-```PHP
-$avity = Avity::init();
-$avity->style()->width(300);
-
-$avity->generate()
-->jpg()
-->toBrowser();
-```
-### Generate-Type
 ```PHP
 $avity = Avity::init();
 
-// Generate jpg type image
-$avity->generate()
-->jpg()
-->toBrowser();
+$avity->height(600)->width(500); // Long Vertical Identicon. WOW!
 
-// Generate png type image
-$avity->generate()
-->png()
-->toBrowser();
-
-//Generate gif type image
-$avity->generate()
-->png()
-->toBrowser();
-```
-## Generatable images
-
-- [Triangle Style](#Triangle-Style)
-- [Squre style](#Square-Style)
-- [Circle style](#Circle-Style)
-
-### Triangle-Style
-```PHP
-use Hedronium\Avity\Avity;
-$avity = Avity::init(0, 0, Avity::TRIANGLE_STYLE);
-$avity->style();
-$avity->generate()->jpg()->toBrowser();
-```
-### Square-Style  
-
-```PHP
-use Hedronium\Avity\Avity;
-$avity = Avity::init(0, 0, Avity::SQUARE_STYLE);
-$avity->style();
-$avity->generate()->jpg()->toBrowser();
-```
-### Circle-Style
-```PHP
-use Hedronium\Avity\Avity;
-$avity = Avity::init(0, 0, Avity::CIRCLE_STYLE);
-$avity->style();
-$avity->generate()->jpg()->toBrowser();
-```
-### Square Circle-Style
-```PHP
-use Hedronium\Avity\Avity;
-$avity = Avity::init(0, 0, Avity::SQUARE_CIRCLE_STYLE);
-$avity->style();
 $avity->generate()->jpg()->toBrowser();
 ```
 
+Yes, its a Fluent API, method chaining is cool!
+
+
+
+## Customizing the Grid
+You can call the `rows($value)` and `columns($value)` method on the `Avity` instance
+after initialization. Like:
+
+```PHP
+$avity = Avity::init();
+
+$avity->rows(3)->columns(3); // 3x3 Grid
+
+$avity->generate()->jpg()->toBrowser();
+```
+
+## Padding
+You can call the `padding($value)` method on the `Avity` instance
+
+
+```PHP
+$avity = Avity::init();
+
+$avity->padding(100);
+
+$avity->generate()->jpg()->toBrowser();
+```
+
+## Style Specific Customizations.
+Often the style class used has specific methods that customize its behaviour
+which are not directly available on the Avity object for such cases the style
+instace can be fetched with the `style()` method on the `Avity` instance.
+
+Like:
+
+```PHP
+$avity = Avity::init();
+
+$avity->style()->variedColor()->spacing(10); // `spacing()` & `variedColor()` is a style specific method
+
+$avity->generate()->jpg()->toBrowser();
+```
+
+
+
+
+# Generators
+`Generators` are objects that generate numbers. These numbers are used by Layouts
+to set blocks onto the grid.
+
+Avity comes built in with two generators `Hash` & `Random`
+
+To use a different generator you can pass in an associative array
+of options with the `generator` key and the class bane as the value. Like:
+
+```PHP
+$avity = Avity::init([
+    'generator' => \Hedronium\Avity\Generators\Hash::class
+]);
+```
+
+
+available classes:
+
+- `\Hedronium\Avity\Generators\Hash` (_default_)
+- `\Hedronium\Avity\Generators\Random`
+
+
+
+## The Hash Generator
+Once you got the generator setup like above to pass in a value to hash you can call `hash()` on the `Avity` instance.
+(it can be anything, like the user's username or email address or id)
+
+```PHP
+$avity = Avity::init([
+    'generator' => \Hedronium\Avity\Generators\Hash::class
+]);
+
+$avity->hash('I like Bananas and I cannot lie.'); // I really like bananas.
+
+$avity->generate()->jpg()->toBrowser();
+```
+
+This will generate the same identicon each time you give it the same value to hash.
+
+
+# Layouts
+`Layout` objects use `Generator` objects to set blocks onto the grid.
+Avity comes with 3 built in `Layout` classes:
+
+- `\Hedronium\Avity\Layouts\VerticalMirror` (_default_)
+- `\Hedronium\Avity\Layouts\HorizontalMirror`
+- `\Hedronium\Avity\Layouts\DiagonalMirror`
+
+changing the layout class
+
+```PHP
+$avity = Avity::init([
+    'layout' => \Hedronium\Avity\Layouts\DiagonalMirror::class
+]);
+```
+
+# Styles
+`Style` objects use `Layout` objects to draw the grid onto a canvas.
+Avity comes with 4 built in `Style` classes:
+
+- `\Hedronium\Avity\Styles\Square` (_default_)
+- `\Hedronium\Avity\Styles\SquareCircle`
+- `\Hedronium\Avity\Styles\Circle`
+- `\Hedronium\Avity\Styles\Triangle`
+
+changing the style class
+
+```PHP
+$avity = Avity::init([
+    'layout' => \Hedronium\Avity\Styles\Triangle::class
+]);
+```
+
+## spacing()
+All built in `Style` classes have a `spacing(_int_ $value)` method that can be
+used to set the space between blocks.
+Like:
+
+```PHP
+$avity = Avity::init();
+$avity->style()->spacing(30);
+```
+
+## variedColor()
+This ones a fun method available to all default `Style` classes. Just call it and see the magic happen.
+Like:
+
+```PHP
+$avity = Avity::init();
+$avity->style()->variedColor();
+$avity->generate()->jpg()->toBrowser();
+```
