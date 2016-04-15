@@ -66,7 +66,7 @@ $avity->rows(3)->columns(3); // 3x3 Grid
 $avity->generate()->jpg()->toBrowser();
 ```
 
-![Varied Color](http://hedronium.github.io/Avity/images/3_b_3.jpeg)
+![Varied Color](http://hedronium.github.io/Avity/images/3_by_3.jpeg)
 
 ## Padding
 You can call the `padding($value)` method on the `Avity` instance
