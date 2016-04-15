@@ -72,7 +72,6 @@ $avity = Avity::init();
 $avity->padding(100); //100px padding
 ```
 
-
 ## Style Specific Customizations.
 Often the style class used has specific methods that customize its behaviour
 which are not directly available on the Avity object for such cases the style
@@ -88,6 +87,33 @@ $avity->style()->variedColor()->spacing(10); // `spacing()` & `variedColor()` is
 
 ![Varied Color](http://hedronium.github.io/Avity/images/varied_2.jpeg)
 ![Varied Color](http://hedronium.github.io/Avity/images/varied_1.jpeg)
+
+# Controlling the Output
+## Output Format
+Avity can output as `jpg`, `png` or `gif`
+
+```PHP
+Avity::init()->generate()->jpg()->toBrowser();
+Avity::init()->generate()->png()->toBrowser();
+Avity::init()->generate()->gif()->toBrowser();
+```
+
+## Output Quality
+The quality of the generated image may also be set. Give it a number between 1 and 100. (Only aplicable for `jpg` & `png`)
+
+```PHP
+Avity::init()->generate()->jpg()->quality(80)->toBrowser();
+```
+
+## Output To Browser
+```PHP
+Avity::init()->generate()->jpg()->toBrowser();
+```
+
+## Output To File
+```PHP
+Avity::init()->generate()->jpg()->toFile('/server/potato.jpg');
+```
 
 
 # Generators
