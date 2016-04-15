@@ -1,6 +1,6 @@
 # Avity
 ---
-![Avity](http://hedronium.github.io/Avity/images/varied_1.jpeg)  
+<img src="http://hedronium.github.io/Avity/images/varied_1.jpeg" style="width: 5em !important;">
 Highly Customizable Identicon Generator for PHP.
 
 
