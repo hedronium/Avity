@@ -1,6 +1,6 @@
 # Avity
 ---
-
+![Avity](http://hedronium.github.io/Avity/images/varied_1.jpeg)  
 Highly Customizable Identicon Generator for PHP.
 
 
@@ -51,6 +51,7 @@ $avity->generate()->jpg()->toBrowser();
 
 Yes, its a Fluent API, method chaining is cool!
 
+![Varied Color](http://hedronium.github.io/Avity/images/vertical.jpeg)
 
 
 ## Customizing the Grid
@@ -65,9 +66,12 @@ $avity->rows(3)->columns(3); // 3x3 Grid
 $avity->generate()->jpg()->toBrowser();
 ```
 
+![Varied Color](http://hedronium.github.io/Avity/images/3_b_3.jpeg)
+
 ## Padding
 You can call the `padding($value)` method on the `Avity` instance
 
+![Padded](http://hedronium.github.io/Avity/images/padded.jpeg)  
 
 ```PHP
 $avity = Avity::init();
@@ -92,7 +96,8 @@ $avity->style()->variedColor()->spacing(10); // `spacing()` & `variedColor()` is
 $avity->generate()->jpg()->toBrowser();
 ```
 
-
+![Varied Color](http://hedronium.github.io/Avity/images/varied_2.jpeg)
+![Varied Color](http://hedronium.github.io/Avity/images/varied_1.jpeg)
 
 
 # Generators
@@ -169,6 +174,8 @@ $avity = Avity::init([
 ```
 
 ## spacing()
+![Avity](http://hedronium.github.io/Avity/images/spaced.jpeg)   
+
 All built in `Style` classes have a `spacing(_int_ $value)` method that can be
 used to set the space between blocks.
 Like:
