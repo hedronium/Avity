@@ -1,7 +1,8 @@
 # Avity
 ---
+
 Highly Customizable Identicon Generator for PHP.
----
+
 
 # Installation  
 Get it through composer cli.
@@ -183,6 +184,113 @@ Like:
 
 ```PHP
 $avity = Avity::init();
+
 $avity->style()->variedColor();
+
 $avity->generate()->jpg()->toBrowser();
 ```
+
+# Advanced Customization
+## Custom Generator
+A generator class should always extend `Hedronium\Avity\Generator`
+example:
+
+```PHP
+<?php
+use Hedronium\Avity\Generator;
+
+/**
+ * A Generator that uses php's `rand()` function.
+ */
+class YourRandGenerator extends Generator
+{
+    public function next($x, $y)
+    {
+        // You could use the $x & $y values to
+        // return something specific but usually it souldn't matter.
+
+        return rand();
+    }
+}
+```
+
+### Using a custom generator
+```PHP
+$avity = Avity::init([
+    'generator' => YourRandGenerator::class
+]);
+```
+
+it is possible that you need to pass construction parameters when instantiating
+your generator, for such cases you may set a callback with constructs your generator
+like:
+
+```PHP
+$avity = Avity::init([
+    'generator' => function () {
+        return new YourRandGenerator('Please be very random.');
+    }
+]);
+```
+
+## Custom Layouts
+A generator class should always extend `Hedronium\Avity\Layout`
+example:
+
+```PHP
+<?php
+use Hedronium\Avity\Layout;
+
+/**
+ * A Generator that uses php's `rand()` function.
+ */
+class NoMirror extends Layout
+{
+    public function drawGrid(array $values)
+    {
+        // Sometimes, some style objects are not binary
+        // they may draw more than one shape of block
+        // thus the `$values` variable is passed in by the style.
+
+        $grid = [];
+        for ($y = 0; $y < $this->rows; $y++) {
+            $grid[$y] = [];
+
+            for ($x = 0; $x < $this->columns; $x++) {
+
+                // should draw takes the `$values` and
+                // returns a value based on
+                // generator output
+
+                $grid[$y][$x] = $this->shouldDraw($values);
+            }
+        }
+
+        return $grid;
+    }
+}
+```
+
+Please check the source code for more details. (We promise its simple and readable.)
+
+### Using a custom layout
+```PHP
+$avity = Avity::init([
+    'generator' => NoMirror::class
+]);
+```
+
+it is possible that you need to pass construction parameters when instantiating
+your layout, for such cases you may set a callback with constructs your layout
+like:
+
+```PHP
+$avity = Avity::init([
+    'generator' => function ($generator) {
+        return new NoMirror($generator, 'POTATO');
+    }
+]);
+```
+
+the callback receive the generator instance as it's very likely that you
+will be generating the grid based on the generaotr output.
