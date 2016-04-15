@@ -51,8 +51,6 @@ $avity->generate()->jpg()->toBrowser();
 
 Yes, its a Fluent API, method chaining is cool!
 
-![Varied Color](http://hedronium.github.io/Avity/images/vertical.jpeg)
-
 
 ## Customizing the Grid
 You can call the `rows($value)` and `columns($value)` method on the `Avity` instance
@@ -150,7 +148,6 @@ Avity comes with 3 built in `Layout` classes:
 
 ![Avity](http://hedronium.github.io/Avity/images/vertical_mirror.jpeg)
 ![Avity](http://hedronium.github.io/Avity/images/horizontal_mirror.jpeg)
-![Avity](http://hedronium.github.io/Avity/images/diagonal_mirror.jpeg)
 
 changing the layout class
 
@@ -171,8 +168,6 @@ Avity comes with 4 built in `Style` classes:
 
 ![Avity](http://hedronium.github.io/Avity/images/vertical_mirror.jpeg)
 ![Avity](http://hedronium.github.io/Avity/images/circle.jpeg)
-![Avity](http://hedronium.github.io/Avity/images/square_circle.jpeg)
-![Avity](http://hedronium.github.io/Avity/images/triangle.jpeg)
 
 changing the style class
 
