@@ -1,8 +1,8 @@
 {
     "name": "hedronium/avity",
-    "description": "this is an image generator",
+    "description": "Highly extensible & customizable Identicon Generator",
     "type": "library",
-    "keywords": ["image","generator","github"],
+    "keywords": ["customizable", "extensible", "identicon", "generator"],
     "license": "MIT",
   	"autoload": {
         "psr-4": {
