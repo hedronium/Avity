@@ -23,7 +23,23 @@ class Output
       	$this->canvas = $canvas;
     }
 
-  	public function jpg()
+    /**
+     * Outputs data URI string.
+     */
+    public function toDataURI()
+    {
+        return 'data:image/' . $this->type . ';base64,' . base64_encode($this->__toString());
+    }
+
+    /**
+     * Outputs binary image data string.
+     */
+    public function __toString()
+    {
+        return $this->canvas->__toString();
+    }
+
+    public function jpg()
     {
       	$this->type = 'jpg';
       	return $this;
