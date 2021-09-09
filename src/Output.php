@@ -28,7 +28,7 @@ class Output
      */
     public function toDataURI()
     {
-        return 'data:image/' . $this->type . ';base64,' . base64_encode($this->__toString());
+        return 'data:image/' . $this->type . ';base64,' . base64_encode($this->canvas->__toString());
     }
 
     /**
